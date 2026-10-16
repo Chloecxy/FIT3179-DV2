@@ -1,0 +1,115 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": {
+    "left": 0,
+    "right": 5,
+    "top": 5,
+    "bottom": 0
+  },
+
+  "spacing": 60,
+  
+  "data": {
+    "sequence": {
+      "start": 0,
+      "stop": 100,
+      "as": "i"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "['Women','Men']",
+      "as": "sex"
+    },
+    {
+      "flatten": [
+        "sex"
+      ]
+    },
+    {
+      "lookup": "sex",
+      "from": {
+        "data": {
+          "url": "data/01_craft_rate_by_sex.csv"
+        },
+        "key": "sex",
+        "fields": [
+          "per_100_people"
+        ]
+      }
+    },
+    {
+      "calculate": "datum.i % 10",
+      "as": "col"
+    },
+    {
+      "calculate": "floor(datum.i / 10)",
+      "as": "row"
+    },
+    {
+      "calculate": "((9 - datum.row) * 10 + datum.col) < datum.per_100_people ? 'yes' : 'no'",
+      "as": "status"
+    },
+    {
+      "calculate": "datum.sex + ': ' + datum.per_100_people + ' in 100'",
+      "as": "label"
+    },
+    {
+      "calculate": "datum.sex == 'Women' ? 0 : 1",
+      "as": "order"
+    }
+  ],
+  "mark": {
+    "type": "square",
+    "size": 310
+  },
+  "encoding": {
+    "x": {
+      "field": "col",
+      "type": "ordinal",
+      "axis": null
+    },
+    "y": {
+      "field": "row",
+      "type": "ordinal",
+      "axis": null
+    },
+    "column": {
+      "field": "label",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "order",
+        "op": "min"
+      },
+      "header": {
+        "labelOrient": "top",
+        "labelFontSize": 17
+      }
+    },
+    "color": {
+      "condition": [
+        {
+          "test": "datum.status == 'yes' && datum.sex == 'Women'",
+          "value": "#D8639A"
+        },
+        {
+          "test": "datum.status == 'yes' && datum.sex == 'Men'",
+          "value": "#4A86C5"
+        }
+      ],
+      "value": "#E4E2DA"
+    },
+    "tooltip": {
+      "field": "label",
+      "type": "nominal",
+      "title": "Did craft"
+    }
+  },
+  "width": {
+    "step": 21
+  },
+  "height": {
+    "step": 20
+  }
+}

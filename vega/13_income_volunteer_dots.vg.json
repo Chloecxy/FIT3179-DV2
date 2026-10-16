@@ -1,0 +1,392 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Of 11 activities, craft is the least likely to earn money"
+  },
+  "data": {
+    "url": "data/09_income_volunteer.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.measure == 'Received income' ? 'Earned money from it' : 'Volunteered'",
+      "as": "what"
+    }
+  ],
+  "width": 560,
+  "height": {
+    "step": 32
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "filter": "datum.activity == 'Craft'"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "fill": "#FBF1D6"
+      },
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "sort": [
+            "Fashion, interior, graphic design",
+            "Film-making and editing",
+            "Designing websites and games",
+            "Photography",
+            "Acting and performing",
+            "Singing or playing an instrument",
+            "Writing stories, poetry or blogs",
+            "Songwriting and making music",
+            "Dancing",
+            "Painting, drawing and sculpting",
+            "Craft"
+          ],
+          "title": null,
+          "axis": {
+            "labelLimit": 340,
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12
+          }
+        },
+        "x": {
+          "value": 0
+        },
+        "x2": {
+          "value": 560
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 4,
+        "color": "#D7D4CA"
+      },
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "sort": [
+            "Fashion, interior, graphic design",
+            "Film-making and editing",
+            "Designing websites and games",
+            "Photography",
+            "Acting and performing",
+            "Singing or playing an instrument",
+            "Writing stories, poetry or blogs",
+            "Songwriting and making music",
+            "Dancing",
+            "Painting, drawing and sculpting",
+            "Craft"
+          ],
+          "title": null,
+          "axis": {
+            "labelLimit": 340,
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12
+          }
+        },
+        "x": {
+          "aggregate": "min",
+          "field": "pct_of_participants",
+          "type": "quantitative"
+        },
+        "x2": {
+          "aggregate": "max",
+          "field": "pct_of_participants"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 170,
+        "opacity": 1
+      },
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "sort": [
+            "Fashion, interior, graphic design",
+            "Film-making and editing",
+            "Designing websites and games",
+            "Photography",
+            "Acting and performing",
+            "Singing or playing an instrument",
+            "Writing stories, poetry or blogs",
+            "Songwriting and making music",
+            "Dancing",
+            "Painting, drawing and sculpting",
+            "Craft"
+          ],
+          "title": null,
+          "axis": {
+            "labelLimit": 340,
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12
+          }
+        },
+        "x": {
+          "field": "pct_of_participants",
+          "type": "quantitative",
+          "title": "% of people who did the activity",
+          "scale": {
+            "domain": [
+              0,
+              40
+            ]
+          }
+        },
+        "color": {
+          "field": "what",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Earned money from it",
+              "Volunteered"
+            ],
+            "range": [
+              "#2A2A28",
+              "#7E6BA8"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "symbolSize": 200,
+            "labelLimit": 260
+          }
+        },
+        "tooltip": [
+          {
+            "field": "activity",
+            "title": "Activity"
+          },
+          {
+            "field": "what",
+            "title": "Measure"
+          },
+          {
+            "field": "pct_of_participants",
+            "title": "% of participants",
+            "format": ".1f"
+          },
+          {
+            "field": "participants_thousand",
+            "title": "People (thousands)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "pct_of_participants",
+              "as": "hi"
+            }
+          ],
+          "groupby": [
+            "activity"
+          ]
+        },
+        {
+          "filter": "datum.pct_of_participants == datum.hi"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 11,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "sort": [
+            "Fashion, interior, graphic design",
+            "Film-making and editing",
+            "Designing websites and games",
+            "Photography",
+            "Acting and performing",
+            "Singing or playing an instrument",
+            "Writing stories, poetry or blogs",
+            "Songwriting and making music",
+            "Dancing",
+            "Painting, drawing and sculpting",
+            "Craft"
+          ],
+          "title": null,
+          "axis": {
+            "labelLimit": 340,
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12
+          }
+        },
+        "x": {
+          "field": "pct_of_participants",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "pct_of_participants",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "field": "what",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Earned money from it",
+              "Volunteered"
+            ],
+            "range": [
+              "#2A2A28",
+              "#7E6BA8"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "joinaggregate": [
+            {
+              "op": "max",
+              "field": "pct_of_participants",
+              "as": "hi"
+            }
+          ],
+          "groupby": [
+            "activity"
+          ]
+        },
+        {
+          "filter": "datum.pct_of_participants != datum.hi"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -12,
+        "fontSize": 11,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "sort": [
+            "Fashion, interior, graphic design",
+            "Film-making and editing",
+            "Designing websites and games",
+            "Photography",
+            "Acting and performing",
+            "Singing or playing an instrument",
+            "Writing stories, poetry or blogs",
+            "Songwriting and making music",
+            "Dancing",
+            "Painting, drawing and sculpting",
+            "Craft"
+          ],
+          "title": null,
+          "axis": {
+            "labelLimit": 340,
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12
+          }
+        },
+        "x": {
+          "field": "pct_of_participants",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "pct_of_participants",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "field": "what",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Earned money from it",
+              "Volunteered"
+            ],
+            "range": [
+              "#2A2A28",
+              "#7E6BA8"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "activity": "Craft",
+            "x": 39.5,
+            "t": "Lowest of all 11 for earning money"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#2A7F9E"
+      },
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "sort": [
+            "Fashion, interior, graphic design",
+            "Film-making and editing",
+            "Designing websites and games",
+            "Photography",
+            "Acting and performing",
+            "Singing or playing an instrument",
+            "Writing stories, poetry or blogs",
+            "Songwriting and making music",
+            "Dancing",
+            "Painting, drawing and sculpting",
+            "Craft"
+          ],
+          "title": null,
+          "axis": {
+            "labelLimit": 340,
+            "domain": false,
+            "ticks": false,
+            "labelFontSize": 12
+          }
+        },
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

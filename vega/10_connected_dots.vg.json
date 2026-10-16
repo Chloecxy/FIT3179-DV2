@@ -1,0 +1,197 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Half of children who craft do under 3 hours a week; most",
+      "screen users do 10 or more"
+    ]
+  },
+  "data": {
+    "url": "data/10_children_hours.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.activity != 'Reading for pleasure'"
+    }
+  ],
+  "width": 580,
+  "height": {
+    "step": 52
+  },
+  "encoding": {
+    "y": {
+      "field": "hours_per_week",
+      "type": "ordinal",
+      "sort": [
+        "0–2",
+        "3–4",
+        "5–9",
+        "10–19",
+        "20+"
+      ],
+      "title": "Hours per week",
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 13
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 4,
+        "color": "#D7D4CA"
+      },
+      "encoding": {
+        "x": {
+          "aggregate": "min",
+          "field": "pct_of_children_doing_it",
+          "type": "quantitative"
+        },
+        "x2": {
+          "aggregate": "max",
+          "field": "pct_of_children_doing_it"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 260,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "pct_of_children_doing_it",
+          "type": "quantitative",
+          "title": "% of the children who do the activity",
+          "scale": {
+            "domain": [
+              0,
+              60
+            ]
+          }
+        },
+        "color": {
+          "field": "activity",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Arts and crafts",
+              "Screen-based activities"
+            ],
+            "range": [
+              "#D98E04",
+              "#2A7F9E"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "symbolSize": 200,
+            "labelLimit": 260
+          }
+        },
+        "tooltip": [
+          {
+            "field": "activity",
+            "title": "Activity"
+          },
+          {
+            "field": "hours_per_week",
+            "title": "Hours a week"
+          },
+          {
+            "field": "pct_of_children_doing_it",
+            "title": "% of children"
+          },
+          {
+            "field": "children_thousand",
+            "title": "Children (thousands)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -16,
+        "fontSize": 12,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": {
+          "field": "pct_of_children_doing_it",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "pct_of_children_doing_it",
+          "format": ".0f"
+        },
+        "color": {
+          "field": "activity",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Arts and crafts",
+              "Screen-based activities"
+            ],
+            "range": [
+              "#D98E04",
+              "#2A7F9E"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "activity": "Arts and crafts",
+            "hours_per_week": "0–2",
+            "v": 51.1,
+            "t": "peaks at 51%"
+          },
+          {
+            "activity": "Screen-based activities",
+            "hours_per_week": "10–19",
+            "v": 40,
+            "t": "peaks at 40%"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "dy": 20,
+        "fontSize": 11,
+        "fontWeight": 700,
+        "color": "#2A7F9E"
+      },
+      "encoding": {
+        "x": {
+          "field": "v",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "hours_per_week",
+          "type": "ordinal",
+          "sort": [
+            "0–2",
+            "3–4",
+            "5–9",
+            "10–19",
+            "20+"
+          ]
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Drag across the bars to see those states on the map"
+  },
+  "padding": {
+    "left": 50,
+    "right": 50,
+    "top": 5,
+    "bottom": 5
+  },
+  "vconcat": [
+    {
+      "title": {
+        "text": "Mapped shops by state",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "anchor": "start"
+      },
+      "data": {
+        "url": "data/07_craft_shops.csv"
+      },
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "n"
+            }
+          ],
+          "groupby": [
+            "state"
+          ]
+        }
+      ],
+      "params": [
+        {
+          "name": "state_sel",
+          "select": {
+            "type": "interval",
+            "encodings": [
+              "x"
+            ]
+          }
+        }
+      ],
+      "width": 580,
+      "height": 110,
+      "mark": {
+        "type": "bar",
+        "tooltip": true,
+        "cursor": "ew-resize",
+        "fill": "#D98E04"
+      },
+      "encoding": {
+        "x": {
+          "field": "state",
+          "type": "ordinal",
+          "title": "State",
+          "sort": "-y",
+          "axis": {
+            "labelAngle": 0
+          }
+        },
+        "y": {
+          "field": "n",
+          "type": "quantitative",
+          "title": "Mapped shops"
+        },
+        "opacity": {
+          "condition": {
+            "param": "state_sel",
+            "value": 1
+          },
+          "value": 0.4
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "n",
+            "title": "Shops"
+          }
+        ]
+      }
+    },
+    {
+      "title": {
+        "text": "Where the brushed shops are",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "anchor": "start"
+      },
+      "width": 580,
+      "height": 440,
+      "projection": {
+        "type": "conicEqualArea",
+        "parallels": [
+          -18,
+          -36
+        ],
+        "rotate": [
+          -134,
+          0
+        ],
+        "center": [
+          -25,
+          -7
+        ],
+        "scale": 600
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "geo/australia_states.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "#ECEAE2",
+            "stroke": "white",
+            "strokeWidth": 1
+          }
+        },
+        {
+          "data": {
+            "url": "data/07_craft_shops.csv"
+          },
+          "transform": [
+            {
+              "filter": {
+                "param": "state_sel"
+              }
+            },
+            {
+              "filter": {
+                "param": "group_sel"
+              }
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "size": 37,
+            "opacity": 0.7,
+            "stroke": "white",
+            "strokeWidth": 0.3
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "color": {
+              "field": "group",
+              "type": "nominal",
+              "title": null,
+              "scale": {
+                "domain": [
+                  "Craft and art supplies",
+                  "Fabric, sewing and yarn"
+                ],
+                "range": [
+                  "#D98E04",
+                  "#2A7F9E"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "symbolType": "circle",
+                "symbolSize": 80,
+                "labelLimit": 260
+              }
+            },
+            "tooltip": [
+              {
+                "field": "name",
+                "title": "Shop"
+              },
+              {
+                "field": "group",
+                "title": "Type"
+              },
+              {
+                "field": "state",
+                "title": "State"
+              }
+            ]
+          },
+          "params": [
+            {
+              "name": "group_sel",
+              "select": {
+                "type": "point",
+                "fields": [
+                  "group"
+                ]
+              },
+              "bind": "legend"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "spacing": 30,
+  "autosize": {
+    "type": "fit-x",
+    "contains": "padding"
+  }
+}

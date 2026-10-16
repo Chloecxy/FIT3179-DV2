@@ -1,0 +1,337 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "More women take part, but they don't try more activities than",
+      "men"
+    ]
+  },
+  "hconcat": [
+    {
+      "width": 410,
+      "height": 400,
+      "title": {
+        "text": "Men",
+        "fontSize": 16,
+        "anchor": "start"
+      },
+      "projection": {
+        "type": "conicEqualArea",
+        "parallels": [
+          -18,
+          -36
+        ],
+        "rotate": [
+          -134,
+          0
+        ],
+        "center": [
+          0,
+          -27
+        ],
+        "scale": 560,
+        "translate": [
+          205,
+          195
+        ]
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "geo/australia_states.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "#ECEAE2",
+            "stroke": "white",
+            "strokeWidth": 1
+          }
+        },
+        {
+          "data": {
+            "url": "data/06_state_sex_symbols.csv"
+          },
+          "transform": [
+            {
+              "filter": "datum.sex == 'Men'"
+            },
+            {
+              "calculate": "datum.participation_rate_pct < 25 ? 'Under 25%' : datum.participation_rate_pct < 35 ? '25% to 35%' : datum.participation_rate_pct < 45 ? '35% to 45%' : '45% or more'",
+              "as": "cls"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "opacity": 0.92,
+            "stroke": "white",
+            "strokeWidth": 1.5
+          },
+          "encoding": {
+            "longitude": {
+              "field": "capital_lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "capital_lat",
+              "type": "quantitative"
+            },
+            "size": {
+              "field": "pct_of_participants_doing_3plus_types",
+              "type": "quantitative",
+              "title": [
+                "Of those, share doing",
+                "3+ kinds of activity (%)"
+              ],
+              "scale": {
+                "domain": [
+                  0,
+                  30
+                ],
+                "range": [
+                  0,
+                  1700
+                ]
+              },
+              "legend": {
+                "orient": "top",
+                "direction": "horizontal",
+                "values": [
+                  10,
+                  20,
+                  30
+                ],
+                "symbolFillColor": "#B9B5AB",
+                "symbolStrokeColor": "white",
+                "offset": 24,
+                "labelExpr": "datum.value === 10 ? 'Under 10%' : datum.value === 20 ? '10% to 20%' : '20% to 30%'"
+              }
+            },
+            "color": {
+              "field": "cls",
+              "type": "nominal",
+              "title": "Men who took part",
+              "sort": [
+                "Under 25%",
+                "25% to 35%",
+                "35% to 45%",
+                "45% or more"
+              ],
+              "scale": {
+                "domain": [
+                  "Under 25%",
+                  "25% to 35%",
+                  "35% to 45%",
+                  "45% or more"
+                ],
+                "range": [
+                  "#D6E6F5",
+                  "#9CC3E6",
+                  "#5B9BD5",
+                  "#1F5FA6"
+                ]
+              },
+              "legend": {
+                "orient": "top",
+                "direction": "vertical",
+                "symbolType": "circle",
+                "symbolSize": 160,
+                "offset": 0,
+                "labelLimit": 200
+              }
+            },
+            "order": {
+              "field": "capital_lat",
+              "sort": "descending"
+            },
+            "tooltip": [
+              {
+                "field": "state",
+                "title": "State"
+              },
+              {
+                "field": "participation_rate_pct",
+                "title": "% who took part"
+              },
+              {
+                "field": "pct_of_participants_doing_3plus_types",
+                "title": "% doing 3+ kinds"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "width": 410,
+      "height": 400,
+      "title": {
+        "text": "Women",
+        "fontSize": 16,
+        "anchor": "start"
+      },
+      "projection": {
+        "type": "conicEqualArea",
+        "parallels": [
+          -18,
+          -36
+        ],
+        "rotate": [
+          -134,
+          0
+        ],
+        "center": [
+          0,
+          -27
+        ],
+        "scale": 560,
+        "translate": [
+          205,
+          195
+        ]
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "geo/australia_states.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "#ECEAE2",
+            "stroke": "white",
+            "strokeWidth": 1
+          }
+        },
+        {
+          "data": {
+            "url": "data/06_state_sex_symbols.csv"
+          },
+          "transform": [
+            {
+              "filter": "datum.sex == 'Women'"
+            },
+            {
+              "calculate": "datum.participation_rate_pct < 25 ? 'Under 25%' : datum.participation_rate_pct < 35 ? '25% to 35%' : datum.participation_rate_pct < 45 ? '35% to 45%' : '45% or more'",
+              "as": "cls"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "opacity": 0.92,
+            "stroke": "white",
+            "strokeWidth": 1.5
+          },
+          "encoding": {
+            "longitude": {
+              "field": "capital_lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "capital_lat",
+              "type": "quantitative"
+            },
+            "size": {
+              "field": "pct_of_participants_doing_3plus_types",
+              "type": "quantitative",
+              "title": [
+                "Of those, share doing",
+                "3+ kinds of activity (%)"
+              ],
+              "scale": {
+                "domain": [
+                  0,
+                  30
+                ],
+                "range": [
+                  0,
+                  1700
+                ]
+              },
+              "legend": {
+                "orient": "top",
+                "direction": "horizontal",
+                "values": [
+                  10,
+                  20,
+                  30
+                ],
+                "symbolFillColor": "#B9B5AB",
+                "symbolStrokeColor": "white",
+                "offset": 24,
+                "labelExpr": "datum.value === 10 ? 'Under 10%' : datum.value === 20 ? '10% to 20%' : '20% to 30%'"
+              }
+            },
+            "color": {
+              "field": "cls",
+              "type": "nominal",
+              "title": "Women who took part",
+              "sort": [
+                "Under 25%",
+                "25% to 35%",
+                "35% to 45%",
+                "45% or more"
+              ],
+              "scale": {
+                "domain": [
+                  "Under 25%",
+                  "25% to 35%",
+                  "35% to 45%",
+                  "45% or more"
+                ],
+                "range": [
+                  "#FBDCE8",
+                  "#F4A9C8",
+                  "#E0689B",
+                  "#B0286A"
+                ]
+              },
+              "legend": {
+                "orient": "top",
+                "direction": "vertical",
+                "symbolType": "circle",
+                "symbolSize": 160,
+                "offset": 0,
+                "labelLimit": 200
+              }
+            },
+            "order": {
+              "field": "capital_lat",
+              "sort": "descending"
+            },
+            "tooltip": [
+              {
+                "field": "state",
+                "title": "State"
+              },
+              {
+                "field": "participation_rate_pct",
+                "title": "% who took part"
+              },
+              {
+                "field": "pct_of_participants_doing_3plus_types",
+                "title": "% doing 3+ kinds"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "color": "independent",
+      "size": "shared"
+    },
+    "legend": {
+      "color": "independent",
+      "size": "shared"
+    }
+  }
+}

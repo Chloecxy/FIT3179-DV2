@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": [
+      "Most crafters spend under 10 hours a week, and half keep going",
+      "for months"
+    ]
+  },
+  "data": {
+    "url": "data/08_activity_hours.csv"
+  },
+  "transform": [
+    {
+      "calculate": "indexof(datum.involvement, '1–13') == 0 ? 'Up to 13 weeks' : 'Over 13 weeks'",
+      "as": "stint"
+    },
+    {
+      "calculate": "indexof(datum.involvement, '10+') >= 0 ? '10 or more' : 'Under 10'",
+      "as": "hours"
+    }
+  ],
+  "spec": {
+    "width": 170,
+    "height": {
+      "step": 28
+    },
+    "encoding": {
+      "x": {
+        "field": "hours",
+        "type": "ordinal",
+        "sort": [
+          "Under 10",
+          "10 or more"
+        ],
+        "axis": {
+          "orient": "top",
+          "labelAngle": 0,
+          "labelFontSize": 12,
+          "title": "Hours a week",
+          "titleFontSize": 11
+        },
+        "title": null
+      },
+      "y": {
+        "field": "activity",
+        "type": "nominal",
+        "title": null,
+        "sort": [
+          "Craft",
+          "Painting, drawing and sculpting",
+          "Writing stories, poetry or blogs",
+          "Photography",
+          "Singing or playing an instrument",
+          "Designing websites and games",
+          "Dancing",
+          "Songwriting and making music",
+          "Film-making and editing",
+          "Fashion, interior, graphic design",
+          "Acting and performing"
+        ],
+        "axis": {
+          "labelLimit": 340,
+          "domain": false,
+          "ticks": false
+        }
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "rect",
+          "stroke": "white",
+          "strokeWidth": 2
+        },
+        "encoding": {
+          "color": {
+            "field": "pct_of_participants",
+            "type": "quantitative",
+            "title": "% of participants",
+            "scale": {
+              "domain": [
+                0,
+                60
+              ],
+              "range": [
+                "#FBF1D6",
+                "#D98E04"
+              ]
+            },
+            "legend": {
+              "orient": "right",
+              "gradientLength": 220,
+              "direction": "vertical"
+            }
+          },
+          "tooltip": [
+            {
+              "field": "activity",
+              "title": "Activity"
+            },
+            {
+              "field": "involvement",
+              "title": "Involvement"
+            },
+            {
+              "field": "pct_of_participants",
+              "title": "% of participants"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "fontSize": 12,
+          "fontWeight": 600
+        },
+        "encoding": {
+          "text": {
+            "field": "pct_of_participants",
+            "format": ".0f"
+          },
+          "color": {
+            "condition": {
+              "test": "datum.pct_of_participants > 50",
+              "value": "white"
+            },
+            "value": "#1C1C1A"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.activity == 'Craft'"
+          }
+        ],
+        "mark": {
+          "type": "rect",
+          "fill": null,
+          "stroke": "#2A2A28",
+          "strokeWidth": 2.5
+        }
+      }
+    ]
+  },
+  "facet": {
+    "column": {
+      "field": "stint",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Up to 13 weeks",
+        "Over 13 weeks"
+      ],
+      "header": {
+        "labelOrient": "top",
+        "labelFontSize": 14
+      }
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

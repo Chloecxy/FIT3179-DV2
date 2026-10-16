@@ -1,0 +1,167 @@
+/* Made by hand: dashboard system after the DV1 full-marks layout.
+   Yellow ruler band, tinted section bands with number chips, text beside
+   charts (about 10 words a line), chart cards, one centred column. */
+:root {
+  --mat: #1F5C4A;
+  --mat-dark: #174536;
+  --band: #E3EAE7;
+  --tape: #F2C230;
+  --ink: #22231F;
+  --muted: #5B5C55;
+  --paper: #FAFAF7;
+  --card: #FFFFFF;
+  --line: #E3E1D8;
+  --craft: #D98E04;
+  --teal: #2A7F9E;
+  --women: #D8639A;
+  --men: #4A86C5;
+  --bold: #2A7F9E;
+  --bold: #FFA259;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.65;
+  text-align: left;
+}
+a { color: var(--mat); text-underline-offset: 2px; }
+a:hover { color: var(--mat-dark); }
+
+/* One container: hero, tape, story and footer share the same edges. */
+.wrap { max-width: 1100px; margin: 0 auto; padding-left: 27px; padding-right: 27px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  background-color: var(--mat);
+  background-image:
+    linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+  color: #fff;
+}
+.hero-inner { padding-top: 60px; padding-bottom: 48px; }
+.kicker { margin: 0 0 12px; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--tape); }
+.hero h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 76px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.standfirst { max-width: 55ch; margin: 20px 0 0; font-size: 21px; line-height: 1.45; color: #E8F1EC; }
+
+/* ---------- Yellow ruler band ---------- */
+.tape {
+  background: var(--tape);
+  color: #1B1B17;
+  background-image:
+    repeating-linear-gradient(90deg, #1B1B17 0 2px, transparent 2px 12px),
+    repeating-linear-gradient(90deg, #1B1B17 0 2px, transparent 2px 60px);
+  background-size: 100% 9px, 100% 18px;
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+.tape-inner { margin: 0 auto; padding-top: 28px; padding-bottom: 18px; list-style: none; }
+.tape-inner li { padding: 4px 24px 10px 24px; text-align: center; }
+.tape-inner li + li { border-left: 1px solid rgba(27, 27, 23, .3); padding-left: 24px; }
+.tape-inner strong { display: block; font-size: 26px; font-weight: 800; line-height: 1.1; }
+.tape-inner span { font-size: 17px; color: #4A463C; }
+
+/* ---------- Story ---------- */
+main.wrap { padding-bottom: 20px; }
+section { margin-top: 56px; }
+/* Narrow measure: about 10 words a line, one size everywhere. */
+section > p, .intro p, .closing p, .split-text p { max-width: 47ch; }
+section > p, .split-text p { margin-top: 0; }
+
+.intro { margin-top: 40px; }
+.intro-col { padding-right: 35px; padding-top: 10px;}
+.intro-col:last-child { padding-right: 0; }
+.intro-col p { margin-top: 0; }
+.intro-col p + p { margin-top: 16px; }
+.lead { font-size: 18px; line-height: 1.65; }
+
+/* Section bands with green number chips. */
+h2 {
+  margin: 0 -24px 20px; padding: 16px 24px;
+  background: var(--band);
+  font-family: var(--serif); font-weight: 700; font-size: 28px; line-height: 1.25;
+}
+h2 .no {
+  display: inline-block;
+  background: var(--mat);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 700;
+  padding: .1em .45em;
+  border-radius: 4px;
+  margin-right: .5em;
+  vertical-align: baseline;
+}
+h3 { font-size: 16px; margin: 0 0 8px; text-transform: uppercase; letter-spacing: .08em; }
+strong { font-weight: 600; }
+main strong { color: var(--bold); font-weight: 700; }
+main strong.pink { color: var(--women); }
+main strong.blue { color: var(--men); }
+
+.note { max-width: 62ch; padding: 4px 0 4px 16px; border-left: 4px solid var(--craft); font-size: 16px; color: var(--muted); }
+
+/* ---------- Text beside chart ---------- */
+.split { margin-top: 8px; }
+.split-text { padding-right: 28px; }
+.split-text p { margin-bottom: 0; }
+
+/* ---------- Chart cards ---------- */
+.figure { margin: 20px 0 20px; padding: 10px 8px; background: none; border: none; overflow-x: auto; }
+.split .figure { margin: 0 0 20px; padding: 4px 4px; }
+.figure .vega-embed { display: block; }
+.figure .vega-embed details, .figure .vega-embed summary { font-family: var(--sans); }
+.closing p { line-height: 1.6; }
+
+/* Tighten default Vega tooltip rows (theme untouched otherwise). */
+#vg-tooltip-element table { padding: 2px 4px; border-collapse: collapse; }
+#vg-tooltip-element td.key { padding: 1px 0 0; }
+#vg-tooltip-element td.value { padding: 0 0 3px; }
+#vg-tooltip-element tr:last-child td.value { padding-bottom: 0; }
+
+/* ---------- Footer ---------- */
+footer { margin-top: 40px; background: var(--mat-dark); color: #E5EDE8; }
+.foot-inner { padding-top: 44px; padding-bottom: 60px; font-size: 16px; line-height: 1.6; }
+.foot-inner h2 { margin: 0 0 20px; padding: 14px 0 0; background: none; border-top: 3px solid var(--tape); color: #fff; font-size: 22px; }
+.foot-inner h2 .no { display: none; }
+.foot-inner h3 { color: var(--tape); margin-top: 24px; }
+.foot-inner h3:first-child { margin-top: 0; }
+.foot-inner a { color: #fff; }
+.foot-inner ul { margin: 0 0 16px; padding-left: 1.2em; }
+.foot-inner p { margin: 0 0 16px; }
+.foot-col { padding-right: 32px; }
+.foot-col:last-child { padding-right: 0; }
+.ai { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.25); }
+.todo { background: var(--tape); color: #1B1B17; padding: 0 4px; font-size: 14px; }
+
+@media (max-width: 767px) {
+  body { font-size: 16px; }
+  .hero-inner { padding-top: 44px; padding-bottom: 36px; }
+  .hero h1 { font-size: 44px; }
+  h2 { font-size: 24px; }
+  .wrap { padding-left: 16px; padding-right: 16px; }
+  section { margin-top: 48px; }
+  h2 { margin-left: -16px; margin-right: -16px; padding-left: 16px; padding-right: 16px; }
+  .tape-inner li + li { border-left: none; padding-left: 0; }
+  .split-text { padding-right: 0; margin-bottom: 16px; }
+  .intro-col { padding-right: 0; }
+  .figure { padding: 12px 10px 8px; }
+  .foot-col { padding-right: 0; }
+}

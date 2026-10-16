@@ -1,0 +1,17 @@
+state,state_abbr,sex,participation_rate_pct,pct_of_participants_doing_3plus_types,participants_thousand_table3,capital,capital_lon,capital_lat
+New South Wales,NSW,Men,24.9,15.8,783.4,Sydney,151.21,-33.87
+Victoria,Vic,Men,26.4,15.4,678.1,Melbourne,144.96,-37.81
+Queensland,Qld,Men,23,15.9,467.8,Brisbane,153.03,-27.47
+South Australia,SA,Men,24.4,15.4,176.3,Adelaide,138.6,-34.93
+Western Australia,WA,Men,23.6,14.8,254.9,Perth,115.86,-31.95
+Tasmania,Tas,Men,32.7,17.2,73.8,Hobart,147.33,-42.88
+Northern Territory,NT,Men,23.4,21.7,16.1,Darwin,130.84,-12.46
+Australian Capital Territory,ACT,Men,35.9,21.5,63.3,Canberra,149.13,-35.28
+New South Wales,NSW,Women,38.4,14.4,1256.9,Sydney,151.21,-33.87
+Victoria,Vic,Women,39.3,17.8,1057.3,Melbourne,144.96,-37.81
+Queensland,Qld,Women,38.4,16.4,809.9,Brisbane,153.03,-27.47
+South Australia,SA,Women,34.9,11.8,261.3,Adelaide,138.6,-34.93
+Western Australia,WA,Women,39.8,14.8,433.0,Perth,115.86,-31.95
+Tasmania,Tas,Women,51.1,16.2,120.6,Hobart,147.33,-42.88
+Northern Territory,NT,Women,37.6,26.8,26.9,Darwin,130.84,-12.46
+Australian Capital Territory,ACT,Women,54.4,19.7,98.5,Canberra,149.13,-35.28

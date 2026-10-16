@@ -1,0 +1,808 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How Does Craft Participation Vary by Age and Gender?"
+  },
+  "padding": {
+    "left": 0,
+    "right": 5,
+    "top": 5,
+    "bottom": 5
+  },
+  "vconcat": [
+    {
+      "title": {
+        "text": "Drag across the age groups to focus the chart below",
+        "fontSize": 14
+      },
+      "data": {
+        "url": "data/03_craft_rate_by_age_sex.csv"
+      },
+      "width": 880,
+      "height": {
+        "step": 35
+      },
+      "transform": [
+        {
+          "calculate": "datum.sex == 'Men' ? -datum.craft_rate_pct : datum.craft_rate_pct",
+          "as": "signed"
+        }
+      ],
+      "encoding": {
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": [
+            "15-24",
+            "25-34",
+            "35-44",
+            "45-54",
+            "55-64",
+            "65+"
+          ],
+          "title": "Age Group",
+          "axis": {
+            "labelLimit": 340,
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "x": {
+          "field": "signed",
+          "type": "quantitative",
+          "title": "Share of adults who craft (%)",
+          "scale": {
+            "domain": [
+              -30,
+              30
+            ]
+          },
+          "axis": {
+            "values": [
+              -30,
+              -20,
+              -10,
+              0,
+              10,
+              20,
+              30
+            ],
+            "labelExpr": "abs(datum.value) + '%'"
+          }
+        }
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "height": {
+              "band": 0.72
+            }
+          },
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "param": "brush",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "color": {
+              "field": "sex",
+              "type": "nominal",
+              "title": null,
+              "scale": {
+                "domain": [
+                  "Men",
+                  "Women"
+                ],
+                "range": [
+                  "#4A86C5",
+                  "#D8639A"
+                ]
+              },
+              "legend": {
+                "orient": "top",
+                "symbolType": "square"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "sex",
+                "title": "Sex"
+              },
+              {
+                "field": "age_group",
+                "title": "Age"
+              },
+              {
+                "field": "craft_rate_pct",
+                "title": "Adults Who Craft (%)"
+              }
+            ]
+          },
+          "params": [
+            {
+              "name": "brush",
+              "select": {
+                "type": "interval",
+                "encodings": [
+                  "y"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.sex == 'Men'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -6,
+            "fontSize": 16,
+            "fontWeight": 600
+          },
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "param": "brush",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "text": {
+              "field": "craft_rate_pct",
+              "format": ".1f"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.sex == 'Women'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 6,
+            "fontSize": 16,
+            "fontWeight": 600
+          },
+          "encoding": {
+            "opacity": {
+              "condition": {
+                "param": "brush",
+                "value": 1
+              },
+              "value": 0.3
+            },
+            "text": {
+              "field": "craft_rate_pct",
+              "format": ".1f"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": "How Do Creative Activity Rankings Change with Age?",
+        "offset": 30
+      },
+      "data": {
+        "url": "data/04_activity_age_ranks.csv"
+      },
+      "width":880,
+      "height": 400,
+      "layer": [
+        {
+          "transform": [
+            {
+              "filter": {
+                "param": "brush"
+              }
+            },
+            {
+              "filter": "datum.activity != 'Craft' && datum.activity != 'Painting, drawing and sculpting'"
+            }
+          ],
+          "mark": {
+            "type": "line",
+            "strokeWidth": 1.5,
+            "color": "#B9B5AB",
+            "interpolate": "monotone"
+          },
+          "encoding": {
+            "x": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": [
+                "15-24",
+                "25-34",
+                "35-44",
+                "45-54",
+                "55-64",
+                "65+"
+              ],
+              "title": "Age Group",
+              "scale": {
+                "padding": 0.2
+              },
+              "axis": {
+                "orient": "bottom",
+                "labelAngle": 0,
+                "labelPadding": 14,
+                "labelFontSize": 13,
+                "domain": false,
+                "ticks": false,
+                "grid": false
+              }
+            },
+            "y": {
+              "field": "rank",
+              "type": "quantitative",
+              "scale": {
+                "reverse": true,
+                "domain": [
+                  1,
+                  11
+                ],
+                "nice": false,
+                "padding": 14
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": false,
+                "grid": false,
+                "title": "Rank",
+                "titlePadding": 60
+              }
+            },
+            "detail": {
+              "field": "activity"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": {
+                "param": "brush"
+              }
+            },
+            {
+              "filter": "datum.activity == 'Craft' || datum.activity == 'Painting, drawing and sculpting'"
+            }
+          ],
+          "mark": {
+            "type": "line",
+            "strokeWidth": 5,
+            "interpolate": "monotone"
+          },
+          "encoding": {
+            "x": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": [
+                "15-24",
+                "25-34",
+                "35-44",
+                "45-54",
+                "55-64",
+                "65+"
+              ],
+              "title": "Age Group",
+              "scale": {
+                "padding": 0.2
+              },
+              "axis": {
+                "orient": "bottom",
+                "labelAngle": 0,
+                "labelPadding": 14,
+                "labelFontSize": 13,
+                "domain": false,
+                "ticks": false,
+                "grid": false
+              }
+            },
+            "y": {
+              "field": "rank",
+              "type": "quantitative",
+              "scale": {
+                "reverse": true,
+                "domain": [
+                  1,
+                  11
+                ],
+                "nice": false,
+                "padding": 14
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": false,
+                "grid": false,
+                "title": "Rank",
+                "titlePadding": 60
+              }
+            },
+            "color": {
+              "condition": [
+                {
+                  "test": "datum.activity == 'Craft'",
+                  "value": "#D98E04"
+                },
+                {
+                  "test": "datum.activity == 'Painting, drawing and sculpting'",
+                  "value": "#2A7F9E"
+                }
+              ],
+              "value": "#8D8A80"
+            },
+            "detail": {
+              "field": "activity"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": {
+                "param": "brush"
+              }
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "size": 330,
+            "opacity": 1,
+            "stroke": "#fff",
+            "strokeWidth": 1.5
+          },
+          "encoding": {
+            "x": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": [
+                "15-24",
+                "25-34",
+                "35-44",
+                "45-54",
+                "55-64",
+                "65+"
+              ],
+              "title": "Age Group",
+              "scale": {
+                "padding": 0.2
+              },
+              "axis": {
+                "orient": "bottom",
+                "labelAngle": 0,
+                "labelPadding": 14,
+                "labelFontSize": 13,
+                "domain": false,
+                "ticks": false,
+                "grid": false
+              }
+            },
+            "y": {
+              "field": "rank",
+              "type": "quantitative",
+              "scale": {
+                "reverse": true,
+                "domain": [
+                  1,
+                  11
+                ],
+                "nice": false,
+                "padding": 14
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": false,
+                "grid": false,
+                "title": "Rank",
+                "titlePadding": 60
+              }
+            },
+            "color": {
+              "condition": [
+                {
+                  "test": "datum.activity == 'Craft'",
+                  "value": "#D98E04"
+                },
+                {
+                  "test": "datum.activity == 'Painting, drawing and sculpting'",
+                  "value": "#2A7F9E"
+                }
+              ],
+              "value": "#8D8A80"
+            },
+            "tooltip": [
+              {
+                "field": "activity",
+                "title": "Activity"
+              },
+              {
+                "field": "age_group",
+                "title": "Age Group"
+              },
+              {
+                "field": "rank",
+                "title": "Rank"
+              },
+              {
+                "field": "rate_pct",
+                "title": "% of Age Group",
+                "format": ".1f"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": {
+                "param": "brush"
+              }
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "fontWeight": 700,
+            "color": "white"
+          },
+          "encoding": {
+            "x": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": [
+                "15-24",
+                "25-34",
+                "35-44",
+                "45-54",
+                "55-64",
+                "65+"
+              ],
+              "title": "Age Group",
+              "scale": {
+                "padding": 0.2
+              },
+              "axis": {
+                "orient": "bottom",
+                "labelAngle": 0,
+                "labelPadding": 14,
+                "labelFontSize": 13,
+                "domain": false,
+                "ticks": false,
+                "grid": false
+              }
+            },
+            "y": {
+              "field": "rank",
+              "type": "quantitative",
+              "scale": {
+                "reverse": true,
+                "domain": [
+                  1,
+                  11
+                ],
+                "nice": false,
+                "padding": 14
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": false,
+                "grid": false,
+                "title": "Rank",
+                "titlePadding": 60
+              }
+            },
+            "text": {
+              "field": "rank",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": {
+                "param": "brush"
+              }
+            },
+            {
+              "calculate": "indexof(['15-24','25-34','35-44','45-54','55-64','65+'], datum.age_group)",
+              "as": "age_idx"
+            },
+            {
+              "joinaggregate": [
+                {
+                  "op": "min",
+                  "field": "age_idx",
+                  "as": "lo"
+                },
+                {
+                  "op": "max",
+                  "field": "age_idx",
+                  "as": "hi"
+                }
+              ]
+            },
+            {
+              "filter": "datum.age_idx == datum.lo"
+            },
+            {
+              "calculate": "datum.activity == 'Painting, drawing and sculpting' ? 'Painting' : datum.activity == 'Fashion, interior, graphic design' ? 'Fashion' : datum.activity == 'Designing websites and games' ? 'Web/games' : datum.activity == 'Writing stories, poetry or blogs' ? 'Writing' : datum.activity == 'Singing or playing an instrument' ? 'Singing' : datum.activity == 'Songwriting and making music' ? 'Songwriting' : datum.activity == 'Film-making and editing' ? 'Film-making' : datum.activity == 'Acting and performing' ? 'Acting' : datum.activity",
+              "as": "short"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -16,
+            "fontSize": 10
+          },
+          "encoding": {
+            "x": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": [
+                "15-24",
+                "25-34",
+                "35-44",
+                "45-54",
+                "55-64",
+                "65+"
+              ],
+              "title": "Age Group",
+              "scale": {
+                "padding": 0.2
+              },
+              "axis": {
+                "orient": "bottom",
+                "labelAngle": 0,
+                "labelPadding": 14,
+                "labelFontSize": 13,
+                "domain": false,
+                "ticks": false,
+                "grid": false
+              }
+            },
+            "y": {
+              "field": "rank",
+              "type": "quantitative",
+              "scale": {
+                "reverse": true,
+                "domain": [
+                  1,
+                  11
+                ],
+                "nice": false,
+                "padding": 14
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": false,
+                "grid": false,
+                "title": "Rank",
+                "titlePadding": 60
+              }
+            },
+            "text": {
+              "field": "short"
+            },
+            "color": {
+              "condition": [
+                {
+                  "test": "datum.activity == 'Craft'",
+                  "value": "#D98E04"
+                },
+                {
+                  "test": "datum.activity == 'Painting, drawing and sculpting'",
+                  "value": "#2A7F9E"
+                }
+              ],
+              "value": "#8D8A80"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": {
+                "param": "brush"
+              }
+            },
+            {
+              "calculate": "indexof(['15-24','25-34','35-44','45-54','55-64','65+'], datum.age_group)",
+              "as": "age_idx"
+            },
+            {
+              "joinaggregate": [
+                {
+                  "op": "min",
+                  "field": "age_idx",
+                  "as": "lo"
+                },
+                {
+                  "op": "max",
+                  "field": "age_idx",
+                  "as": "hi"
+                }
+              ]
+            },
+            {
+              "filter": "datum.age_idx == datum.hi"
+            },
+            {
+              "calculate": "datum.activity == 'Painting, drawing and sculpting' ? 'Painting' : datum.activity == 'Fashion, interior, graphic design' ? 'Fashion' : datum.activity == 'Designing websites and games' ? 'Web/games' : datum.activity == 'Writing stories, poetry or blogs' ? 'Writing' : datum.activity == 'Singing or playing an instrument' ? 'Singing' : datum.activity == 'Songwriting and making music' ? 'Songwriting' : datum.activity == 'Film-making and editing' ? 'Film-making' : datum.activity == 'Acting and performing' ? 'Acting' : datum.activity",
+              "as": "short"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 16,
+            "fontSize": 10
+          },
+          "encoding": {
+            "x": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": [
+                "15-24",
+                "25-34",
+                "35-44",
+                "45-54",
+                "55-64",
+                "65+"
+              ],
+              "title": "Age Group",
+              "scale": {
+                "padding": 0.2
+              },
+              "axis": {
+                "orient": "bottom",
+                "labelAngle": 0,
+                "labelPadding": 14,
+                "labelFontSize": 13,
+                "domain": false,
+                "ticks": false,
+                "grid": false
+              }
+            },
+            "y": {
+              "field": "rank",
+              "type": "quantitative",
+              "scale": {
+                "reverse": true,
+                "domain": [
+                  1,
+                  11
+                ],
+                "nice": false,
+                "padding": 14
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": false,
+                "grid": false,
+                "title": "Rank",
+                "titlePadding": 60
+              }
+            },
+            "text": {
+              "field": "short"
+            },
+            "color": {
+              "condition": [
+                {
+                  "test": "datum.activity == 'Craft'",
+                  "value": "#D98E04"
+                },
+                {
+                  "test": "datum.activity == 'Painting, drawing and sculpting'",
+                  "value": "#2A7F9E"
+                }
+              ],
+              "value": "#8D8A80"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": {
+                "param": "brush"
+              }
+            },
+            {
+              "filter": "datum.age_group == '35-44' && datum.activity == 'Craft'"
+            },
+            {
+              "calculate": "'Craft takes the top spot'",
+              "as": "t"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "dy": -24,
+            "fontSize": 13,
+            "fontWeight": 700,
+            "color": "#D98E04"
+          },
+          "encoding": {
+            "x": {
+              "field": "age_group",
+              "type": "ordinal",
+              "sort": [
+                "15-24",
+                "25-34",
+                "35-44",
+                "45-54",
+                "55-64",
+                "65+"
+              ],
+              "title": "Age Group",
+              "scale": {
+                "padding": 0.2
+              },
+              "axis": {
+                "orient": "bottom",
+                "labelAngle": 0,
+                "labelPadding": 14,
+                "labelFontSize": 13,
+                "domain": false,
+                "ticks": false,
+                "grid": false
+              }
+            },
+            "y": {
+              "field": "rank",
+              "type": "quantitative",
+              "scale": {
+                "reverse": true,
+                "domain": [
+                  1,
+                  11
+                ],
+                "nice": false,
+                "padding": 14
+              },
+              "axis": {
+                "domain": false,
+                "ticks": false,
+                "labels": false,
+                "grid": false,
+                "title": "Rank",
+                "titlePadding": 60
+              }
+            },
+            "text": {
+              "field": "t",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "spacing": 50,
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  }
+}

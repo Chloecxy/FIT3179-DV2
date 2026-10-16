@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Most Common Creative Activities Among Australian Adults"
+  },
+  "data": {
+    "url": "data/02_activity_participants.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.participants_thousand / 1000",
+      "as": "millions"
+    },
+    {
+      "calculate": "format(datum.millions, '.1f') + 'm'",
+      "as": "label"
+    }
+  ],
+
+  "width": 770,
+  "height": {
+    "step": 35
+  },
+
+  "encoding": {
+    "y": {
+      "field": "activity",
+      "type": "nominal",
+      "title": "Creative Activities",
+      "sort": {
+        "field": "millions",
+        "op": "max",
+        "order": "descending"
+      },
+      "axis": {
+        "labelLimit": 340,
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "color": {
+      "condition": {
+        "test": "datum.activity == 'Craft'",
+        "value": "#FFA259"
+      },
+      "value": "#8D8A80"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 8
+      },
+      "encoding": {
+        "x": {
+          "field": "millions",
+          "type": "quantitative",
+          "title": "Millions of Adults",
+          "scale": {
+            "domain": [
+              0,
+              3.6
+            ]
+          }
+        },
+        "x2": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 280,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "millions",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "activity",
+            "title": "Activity"
+          },
+          {
+            "field": "participants_thousand",
+            "title": "People (thousands)",
+            "format": ",.0f"
+          },
+          {
+            "field": "rate_pct_of_adults",
+            "title": "% of adults"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 14,
+        "fontSize": 16,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "millions",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "activity": "Craft",
+            "millions": 3.0997,
+            "t": "Most common"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "dy": -20,
+        "fontSize": 17,
+        "fontWeight": 700,
+        "color": "#2A7F9E"
+      },
+      "encoding": {
+        "x": {
+          "field": "millions",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "sort": {
+            "field": "millions",
+            "op": "max",
+            "order": "descending"
+          }
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

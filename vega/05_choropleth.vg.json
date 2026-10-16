@@ -1,0 +1,520 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Tasmania and the ACT Have the Most Creative People per Head",
+    "offset": 26
+  },
+  "width": 880,
+  "height": 540,
+  "projection": {
+    "type": "conicEqualArea",
+    "parallels": [
+      -18,
+      -36
+    ],
+    "rotate": [
+      -134,
+      0
+    ],
+    "center": [
+      -5,
+      -28
+    ],
+    "scale": 850
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "geo/australia_states.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "data/05_state_participation_rate.csv"
+            },
+            "key": "state",
+            "fields": [
+              "participation_rate_pct",
+              "state_abbr",
+              "participants_thousand"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.participation_rate_pct < 31 ? 'Under 31%' : datum.participation_rate_pct < 35 ? '31% to 35%' : 'More than 35%'",
+          "as": "cls"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "cls",
+          "type": "nominal",
+          "title": "Adults Who Took Part in ≥1 Creative Activity",
+          "sort": [
+            "Under 31%",
+            "31% to 35%",
+            "More than 35%"
+          ],
+          "scale": {
+            "domain": [
+              "Under 31%",
+              "31% to 35%",
+              "More than 35%"
+            ],
+            "range": [
+              "#D3E6DA",
+              "#7DB59A",
+              "#1F5C4A"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "direction": "vertical",
+            "symbolType": "square",
+            "symbolSize": 260,
+            "offset": 2,
+            "titleLimit": 260,
+            "labelLimit": 220
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.name",
+            "title": "State"
+          },
+          {
+            "field": "participation_rate_pct",
+            "title": "% who took part"
+          },
+          {
+            "field": "participants_thousand",
+            "title": "People (thousands)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "abbr": "NSW",
+            "lon": 146.6,
+            "lat": -32.4
+          },
+          {
+            "abbr": "Vic",
+            "lon": 144.2,
+            "lat": -36.9
+          },
+          {
+            "abbr": "Qld",
+            "lon": 144.8,
+            "lat": -22.6
+          },
+          {
+            "abbr": "SA",
+            "lon": 135.2,
+            "lat": -30
+          },
+          {
+            "abbr": "WA",
+            "lon": 122,
+            "lat": -25.8
+          },
+          {
+            "abbr": "NT",
+            "lon": 133.4,
+            "lat": -19.4
+          }
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "abbr",
+          "from": {
+            "data": {
+              "url": "data/05_state_participation_rate.csv"
+            },
+            "key": "state_abbr",
+            "fields": [
+              "participation_rate_pct"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.abbr + ' ' + format(datum.participation_rate_pct, '.1f') + '%'",
+          "as": "t"
+        },
+        {
+          "calculate": "datum.participation_rate_pct >= 35 ? 'white' : '#1c1c1a'",
+          "as": "c"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "dx": -20
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.participation_rate_pct >= 35",
+            "value": "white"
+          },
+          "value": "#1C1C1A"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "abbr": "Tas",
+            "lon": 149.4,
+            "lat": -42.3
+          }
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "abbr",
+          "from": {
+            "data": {
+              "url": "data/05_state_participation_rate.csv"
+            },
+            "key": "state_abbr",
+            "fields": [
+              "participation_rate_pct"
+            ]
+          }
+        },
+        {
+          "calculate": "datum.abbr + ' ' + format(datum.participation_rate_pct, '.1f') + '%'",
+          "as": "t"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "color": "#1F5C4A"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "abbr": "ACT",
+            "lon": 149.13,
+            "lat": -35.28,
+            "tlon": 153.4,
+            "tlat": -36.4
+          }
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "abbr",
+          "from": {
+            "data": {
+              "url": "data/05_state_participation_rate.csv"
+            },
+            "key": "state_abbr",
+            "fields": [
+              "participation_rate_pct"
+            ]
+          }
+        },
+        {
+          "calculate": "'ACT ' + format(datum.participation_rate_pct, '.1f') + '%'",
+          "as": "t"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 70,
+            "fill": "#1F5C4A",
+            "stroke": "white",
+            "strokeWidth": 1.5
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "rule",
+            "color": "#1F5C4A",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "tlon"
+            },
+            "latitude2": {
+              "field": "tlat"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 6,
+            "fontSize": 13,
+            "fontWeight": 700,
+            "color": "#1F5C4A"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "tlon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "tlat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "t",
+              "type": "nominal"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 149.5,
+            "lat": -29,
+            "tlon": 152.5,
+            "tlat": -15
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#9A978D",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "tlon"
+        },
+        "latitude2": {
+          "field": "tlat"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 144,
+            "lat": -10.3,
+            "lon2": 160.5,
+            "lat2": -17
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#F7F5F1",
+        "stroke": "#D5D2C9",
+        "strokeWidth": 1,
+        "cornerRadius": 6
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 152.25,
+            "lat": -11.2,
+            "c": "ink",
+            "t": "Big isn't the same as high"
+          },
+          {
+            "lon": 152.25,
+            "lat": -12.4,
+            "c": "ink",
+            "t": "NSW: most participants (2.04 million)"
+          },
+          {
+            "lon": 152.25,
+            "lat": -13.6,
+            "c": "ink",
+            "t": "but a rate of only 31.7%."
+          },
+          {
+            "lon": 152.25,
+            "lat": -14.8,
+            "c": "grn",
+            "t": "Tasmania: highest rate of any state (41.9%)"
+          },
+          {
+            "lon": 152.25,
+            "lat": -16,
+            "c": "grn",
+            "t": "with just 194,300 participants."
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "fontSize": 11,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "c",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "ink",
+              "grn"
+            ],
+            "range": [
+              "#2A2A28",
+              "#1F5C4A"
+            ]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 152.25,
+            "lat": -17,
+            "tlon": 147.5,
+            "tlat": -31.5
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#9A978D",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "tlon"
+        },
+        "latitude2": {
+          "field": "tlat"
+        }
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  }
+}

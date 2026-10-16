@@ -1,0 +1,761 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Women rate the benefits of creativity higher on every measure"
+  },
+  "width": 490,
+  "height": 420,
+  "layer": [
+    {
+      "data": {
+        "sequence": {
+          "start": 0,
+          "stop": 8,
+          "as": "idx"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "[20,40,60,80]",
+          "as": "level"
+        },
+        {
+          "flatten": [
+            "level"
+          ]
+        },
+        {
+          "calculate": "datum.idx * 2 * PI / 8",
+          "as": "ang"
+        },
+        {
+          "calculate": "datum.level / 80 * sin(datum.ang)",
+          "as": "x"
+        },
+        {
+          "calculate": "datum.level / 80 * cos(datum.ang)",
+          "as": "y"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "interpolate": "linear-closed",
+        "stroke": "#CFCBC0",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.75,
+              1.75
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.5,
+              1.5
+            ]
+          },
+          "axis": null
+        },
+        "detail": {
+          "field": "level",
+          "type": "nominal"
+        },
+        "order": {
+          "field": "idx",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "sequence": {
+          "start": 0,
+          "stop": 8,
+          "as": "idx"
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.idx * 2 * PI / 8",
+          "as": "ang"
+        },
+        {
+          "calculate": "sin(datum.ang)",
+          "as": "x"
+        },
+        {
+          "calculate": "cos(datum.ang)",
+          "as": "y"
+        },
+        {
+          "calculate": "0",
+          "as": "x0"
+        },
+        {
+          "calculate": "0",
+          "as": "y0"
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "stroke": "#CFCBC0",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.75,
+              1.75
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.5,
+              1.5
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x"
+        },
+        "y2": {
+          "field": "y"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "level": 20,
+            "t": "20%"
+          },
+          {
+            "level": 40,
+            "t": "40%"
+          },
+          {
+            "level": 60,
+            "t": "60%"
+          },
+          {
+            "level": 80,
+            "t": "80%"
+          }
+        ]
+      },
+      "transform": [
+        {
+          "calculate": "datum.level / 80",
+          "as": "yy"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 4,
+        "dy": -3,
+        "fontSize": 11,
+        "color": "#6F6C63"
+      },
+      "encoding": {
+        "x": {
+          "datum": 0,
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.75,
+              1.75
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "yy",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.5,
+              1.5
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/11_naps_impact_by_sex.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "men_pct": "number",
+            "women_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.use_in_radar == true || datum.use_in_radar == 'true'"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "rn"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.rn - 1",
+          "as": "idx"
+        },
+        {
+          "calculate": "datum.idx * 2 * PI / 8",
+          "as": "ang"
+        },
+        {
+          "calculate": "{'Shaping and expressing Australian identity':'Australian identity','Our ability to think creatively and develop new ideas':'Thinking creatively','Our ability to express ourselves':'Expressing ourselves','Our understanding of other people and cultures':'Understanding others','Child development':'Child development','Helping us deal with stress, anxiety or depression':'Dealing with stress','Our sense of wellbeing and happiness':'Wellbeing and happiness','Stimulating our minds':'Stimulating our minds'}[datum.statement]",
+          "as": "lab"
+        },
+        {
+          "fold": [
+            "men_pct",
+            "women_pct"
+          ],
+          "as": [
+            "who",
+            "val"
+          ]
+        },
+        {
+          "calculate": "datum.who == 'men_pct' ? 'Men' : 'Women'",
+          "as": "sex"
+        },
+        {
+          "calculate": "datum.val / 80 * sin(datum.ang)",
+          "as": "x"
+        },
+        {
+          "calculate": "datum.val / 80 * cos(datum.ang)",
+          "as": "y"
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "interpolate": "linear-closed",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.75,
+              1.75
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.5,
+              1.5
+            ]
+          },
+          "axis": null
+        },
+        "order": {
+          "field": "idx",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "sex",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Men",
+              "Women"
+            ],
+            "range": [
+              "#4A86C5",
+              "#D8639A"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "symbolType": "square"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "lab",
+            "title": "Area"
+          },
+          {
+            "field": "sex",
+            "title": "Who"
+          },
+          {
+            "field": "val",
+            "title": "% saying big impact"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/11_naps_impact_by_sex.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "men_pct": "number",
+            "women_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.use_in_radar == true || datum.use_in_radar == 'true'"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "rn"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.rn - 1",
+          "as": "idx"
+        },
+        {
+          "calculate": "datum.idx * 2 * PI / 8",
+          "as": "ang"
+        },
+        {
+          "calculate": "{'Shaping and expressing Australian identity':'Australian identity','Our ability to think creatively and develop new ideas':'Thinking creatively','Our ability to express ourselves':'Expressing ourselves','Our understanding of other people and cultures':'Understanding others','Child development':'Child development','Helping us deal with stress, anxiety or depression':'Dealing with stress','Our sense of wellbeing and happiness':'Wellbeing and happiness','Stimulating our minds':'Stimulating our minds'}[datum.statement]",
+          "as": "lab"
+        },
+        {
+          "fold": [
+            "men_pct",
+            "women_pct"
+          ],
+          "as": [
+            "who",
+            "val"
+          ]
+        },
+        {
+          "calculate": "datum.who == 'men_pct' ? 'Men' : 'Women'",
+          "as": "sex"
+        },
+        {
+          "calculate": "datum.val / 80 * sin(datum.ang)",
+          "as": "x"
+        },
+        {
+          "calculate": "datum.val / 80 * cos(datum.ang)",
+          "as": "y"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 80,
+        "opacity": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.75,
+              1.75
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.5,
+              1.5
+            ]
+          },
+          "axis": null
+        },
+        "order": {
+          "field": "idx",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "sex",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Men",
+              "Women"
+            ],
+            "range": [
+              "#4A86C5",
+              "#D8639A"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "symbolType": "square"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "lab",
+            "title": "Area"
+          },
+          {
+            "field": "sex",
+            "title": "Who"
+          },
+          {
+            "field": "val",
+            "title": "% saying big impact"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "data/11_naps_impact_by_sex.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "men_pct": "number",
+            "women_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.use_in_radar == true || datum.use_in_radar == 'true'"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "rn"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.rn - 1",
+          "as": "idx"
+        },
+        {
+          "calculate": "datum.idx * 2 * PI / 8",
+          "as": "ang"
+        },
+        {
+          "calculate": "1.2 * sin(datum.ang)",
+          "as": "x"
+        },
+        {
+          "calculate": "1.2 * cos(datum.ang)",
+          "as": "y"
+        },
+        {
+          "calculate": "{'Shaping and expressing Australian identity':'Australian identity','Our ability to think creatively and develop new ideas':'Thinking creatively','Our ability to express ourselves':'Expressing ourselves','Our understanding of other people and cultures':'Understanding others','Child development':'Child development','Helping us deal with stress, anxiety or depression':'Dealing with stress','Our sense of wellbeing and happiness':'Wellbeing and happiness','Stimulating our minds':'Stimulating our minds'}[datum.statement]",
+          "as": "lab"
+        },
+        {
+          "filter": "datum.x > 0.15"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2A2A28",
+        "dx": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.75,
+              1.75
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.5,
+              1.5
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "lab",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/11_naps_impact_by_sex.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "men_pct": "number",
+            "women_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.use_in_radar == true || datum.use_in_radar == 'true'"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "rn"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.rn - 1",
+          "as": "idx"
+        },
+        {
+          "calculate": "datum.idx * 2 * PI / 8",
+          "as": "ang"
+        },
+        {
+          "calculate": "1.2 * sin(datum.ang)",
+          "as": "x"
+        },
+        {
+          "calculate": "1.2 * cos(datum.ang)",
+          "as": "y"
+        },
+        {
+          "calculate": "{'Shaping and expressing Australian identity':'Australian identity','Our ability to think creatively and develop new ideas':'Thinking creatively','Our ability to express ourselves':'Expressing ourselves','Our understanding of other people and cultures':'Understanding others','Child development':'Child development','Helping us deal with stress, anxiety or depression':'Dealing with stress','Our sense of wellbeing and happiness':'Wellbeing and happiness','Stimulating our minds':'Stimulating our minds'}[datum.statement]",
+          "as": "lab"
+        },
+        {
+          "filter": "datum.x < -0.15"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2A2A28",
+        "dx": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.75,
+              1.75
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.5,
+              1.5
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "lab",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/11_naps_impact_by_sex.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "men_pct": "number",
+            "women_pct": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.use_in_radar == true || datum.use_in_radar == 'true'"
+        },
+        {
+          "window": [
+            {
+              "op": "row_number",
+              "as": "rn"
+            }
+          ]
+        },
+        {
+          "calculate": "datum.rn - 1",
+          "as": "idx"
+        },
+        {
+          "calculate": "datum.idx * 2 * PI / 8",
+          "as": "ang"
+        },
+        {
+          "calculate": "1.2 * sin(datum.ang)",
+          "as": "x"
+        },
+        {
+          "calculate": "1.2 * cos(datum.ang)",
+          "as": "y"
+        },
+        {
+          "calculate": "{'Shaping and expressing Australian identity':'Australian identity','Our ability to think creatively and develop new ideas':'Thinking creatively','Our ability to express ourselves':'Expressing ourselves','Our understanding of other people and cultures':'Understanding others','Child development':'Child development','Helping us deal with stress, anxiety or depression':'Dealing with stress','Our sense of wellbeing and happiness':'Wellbeing and happiness','Stimulating our minds':'Stimulating our minds'}[datum.statement]",
+          "as": "lab"
+        },
+        {
+          "filter": "abs(datum.x) <= 0.15"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "fontSize": 13,
+        "fontWeight": 600,
+        "color": "#2A2A28",
+        "dx": 0
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.75,
+              1.75
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.5,
+              1.5
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "lab",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": -1.1456,
+            "y": -1.1456,
+            "t": "Widest gap: 16 pts"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "dy": -14,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#2A7F9E"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.75,
+              1.75
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -1.5,
+              1.5
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Craft is a hobby, not a side hustle"
+  },
+  "data": {
+    "url": "data/09_income_volunteer.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.activity == 'Craft'"
+    },
+    {
+      "calculate": "datum.measure == 'Received income' ? 'Earned money from craft' : 'Volunteered'",
+      "as": "what"
+    },
+    {
+      "calculate": "100 - datum.pct_of_participants",
+      "as": "none"
+    },
+    {
+      "fold": [
+        "pct_of_participants",
+        "none"
+      ],
+      "as": [
+        "part",
+        "value"
+      ]
+    },
+    {
+      "calculate": "datum.part == 'pct_of_participants' ? 'Yes' : 'No'",
+      "as": "answer"
+    }
+  ],
+  "width": 600,
+  "height": {
+    "step": 44
+  },
+  "encoding": {
+    "y": {
+      "field": "what",
+      "type": "nominal",
+      "title": null,
+      "sort": [
+        "Earned money from craft",
+        "Volunteered"
+      ],
+      "axis": {
+        "labelFontSize": 13,
+        "labelLimit": 340,
+        "domain": false,
+        "ticks": false
+      }
+    },
+    "x": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "% of people who did craft",
+      "scale": {
+        "domain": [
+          0,
+          100
+        ]
+      },
+      "stack": "zero",
+      "axis": {
+        "values": [
+          0,
+          25,
+          50,
+          75,
+          100
+        ]
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "height": {
+          "band": 0.62
+        }
+      },
+      "encoding": {
+        "color": {
+          "field": "answer",
+          "type": "nominal",
+          "title": null,
+          "sort": [
+            "Yes",
+            "No"
+          ],
+          "scale": {
+            "domain": [
+              "Yes",
+              "No"
+            ],
+            "range": [
+              "#D98E04",
+              "#E4E2DA"
+            ]
+          },
+          "legend": {
+            "orient": "top",
+            "symbolType": "square"
+          }
+        },
+        "order": {
+          "field": "answer",
+          "sort": "descending"
+        },
+        "tooltip": [
+          {
+            "field": "what",
+            "title": "Measure"
+          },
+          {
+            "field": "answer",
+            "title": "Answer"
+          },
+          {
+            "field": "value",
+            "title": "%",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.answer == 'Yes'"
+        },
+        {
+          "calculate": "format(datum.value, '.1f') + '%'",
+          "as": "lbl"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontWeight": 700,
+        "fontSize": 14,
+        "color": "#2A2A28"
+      },
+      "encoding": {
+        "text": {
+          "field": "lbl",
+          "type": "nominal"
+        },
+        "x": {
+          "field": "value",
+          "type": "quantitative",
+          "stack": null
+        }
+      }
+    }
+  ]
+}

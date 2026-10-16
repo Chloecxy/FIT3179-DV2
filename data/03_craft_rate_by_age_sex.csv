@@ -1,0 +1,13 @@
+age_group,sex,craft_rate_pct
+15-24,Men,6.4
+25-34,Men,8.0
+35-44,Men,9.1
+45-54,Men,5.7
+55-64,Men,7.2
+65+,Men,6.5
+15-24,Women,21.9
+25-34,Women,19.6
+35-44,Women,22.4
+45-54,Women,20.6
+55-64,Women,26.1
+65+,Women,26.2

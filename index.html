@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Made by Hand: Who Crafts in Australia</title>
+  <meta name="description" content="A data story about craft, Australia's most common creative hobby: who does it, where, and why it matters.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;0,8..60,800;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <p class="kicker">A Data Story · Australia · 2021-22</p>
+    <h1>Made by Hand</h1>
+    <p class="standfirst">Craft is Australia's most common creative hobby. Who does it, where and why it matters.</p>
+  </div>
+  <div class="tape" aria-label="Three key facts">
+    <ul class="pure-g wrap tape-inner">
+      <li class="pure-u-1 pure-u-md-1-3"><strong>3.1 million</strong><span>Adults did craft</span></li>
+      <li class="pure-u-1 pure-u-md-1-3"><strong>23 vs 7 in 100</strong><span>Women vs men did craft</span></li>
+      <li class="pure-u-1 pure-u-md-1-3"><strong>No. 1</strong><span>Most common creative hobby</span></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <div class="pure-g">
+      <div class="pure-u-1 pure-u-md-1-2 intro-col">
+        <p class="lead">During spare time across Australia, kitchen tables turn into workbenches: a half-finished quilt, a whittled spoon, wool unravelling across the couch. <strong>Craft</strong> is not a niche pastime here. It is the country's <strong>most common creative hobby</strong>, practised in sheds, studios and living rooms from Hobart to Darwin.</p>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2 intro-col">
+        <p>It is <strong>overwhelmingly women's work</strong>, supplied by city shops, <strong>rarely a living</strong>, and learned young. This page follows five questions: how big the craft world is, who takes part, where creative people live, why it stays a hobby rather than a job, and what the next generation is doing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1 -->
+  <section id="s1">
+    <h2><span class="no">1</span> How Big Is The Craft World?</h2>
+    <div class="pure-g split">
+      <div class="pure-u-1 pure-u-md-1-2 split-text">
+        <br>
+        <p>In 2021-22, about <strong>3.1 million</strong> Australians aged 15 and over did craft activities. That is 15 in every 100 adults. Craft is also lopsided: <strong class="pink">23</strong> of every 100 women did craft, against only <strong class="blue">7</strong> of every 100 men.</p>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2">
+        <figure class="figure">
+          <div id="vis01"></div>
+        </figure>
+      </div>
+    </div>
+    <figure class="figure">
+      <div id="vis02"></div>
+    </figure>
+  </section>
+
+
+  <!-- Section 2 -->
+  <section id="s2">
+    <h2><span class="no">2</span> Who Crafts?</h2>
+    <div class="pure-g split-text">
+      <div class="pure-u-1 pure-u-md-1-2 intro-col">
+        <p class="lead">The gender gap does not close with age. In every age group, women's craft rate is <strong>more than double</strong> men's, and it is widest among people aged 65 and over: <strong class="pink">26.2%</strong> of women against <strong class="blue">6.5%</strong> of men. Drag across the age groups in the top chart to focus the ranking chart below.</p>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2 intro-col">
+        <p>Age changes which hobby comes first. Painting and drawing are the most popular creative activity for people under 35. From 35 onwards, craft <strong>takes first place</strong> and keeps it. Web and game design is the opposite story: third most popular at ages 25 to 44, but only eighth for people aged 65 and over.</p>
+      </div>
+    </div>
+    <br>
+    <figure class="figure">
+      <div id="vis0304"></div>
+    </figure>
+  </section>
+
+
+  <!-- Section 3 -->
+  <section id="s3">
+    <h2><span class="no">3</span> Creativity Across the States</h2>
+    <figure class="figure">
+      <div id="vis05"></div>
+    </figure>
+    <p>Women are far more likely than men to take part: 39.1% of women against 25.1% of men across Australia. But among people who do take part, women are no more likely than men to try several kinds of activity. In both groups, 16.0% did three or more kinds. The Northern Territory stands out, but its numbers come from a small sample and should be treated with care.</p>
+    <figure class="figure">
+      <div id="vis06"></div>
+          </figure>
+    <div class="pure-g split">
+      <div class="pure-u-1 pure-u-md-7-24 split-text">
+        <p>What about the places where you can buy supplies? Mapping every craft, fabric, sewing and wool shop on OpenStreetMap gives 493 shops. Most sit in or near a capital city. By our calculation about half are within 50 km of a state capital, and the inland is almost empty. Three chains, Spotlight, Kaisercraft and Lincraft, account for 136 of the 493 shops (28%). Drag across the bars to filter the map to those states; click the bars to clear. Click a shop type in the legend to isolate it.</p>
+      </div>
+      <div class="pure-u-1 pure-u-md-17-24">
+        <figure class="figure">
+          <div id="vis14"></div>
+                  </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section id="s4">
+    <h2><span class="no">4</span> A hobby, not a hustle</h2>
+    <p>In 2021-22, craft was a relaxed pastime for most people who did it. Of people who did craft, <strong>84%</strong> spent under 10 hours a week on it, and about half (49%) kept it up for more than 13 weeks. Compare that with singing or playing an instrument, where more people keep going long term.</p>
+    <figure class="figure">
+      <div id="vis08"></div>
+          </figure>
+    <div class="pure-g split">
+      <div class="pure-u-1 pure-u-md-7-24 split-text">
+        <p>Very few turn it into income. Only <strong>3.1%</strong> of people who did craft earned money from it, and 8.6% volunteered their time.</p>
+      </div>
+      <div class="pure-u-1 pure-u-md-17-24">
+        <figure class="figure">
+          <div id="vis09"></div>
+                  </figure>
+      </div>
+    </div>
+    <p>How does that compare with other activities? Of the 11 creative activities in the survey, craft has the lowest share of people who earned money from it (3.1%). In fashion, interior and graphic design the figure is 35%. Craft is also near the bottom for volunteering: only painting, drawing and sculpting is lower. In other words, craft is rarely a source of income.</p>
+    <figure class="figure">
+      <div id="vis13"></div>
+          </figure>
+  </section>
+
+  <!-- 5 -->
+  <section id="s5">
+    <h2><span class="no">5</span> The next generation, and why it matters</h2>
+    <div class="pure-g split">
+      <div class="pure-u-1 pure-u-md-7-24 split-text">
+        <p>Children's crafting is brief next to their screen time. Of children aged 5 to 14 who do arts and crafts, <strong>51%</strong> spend under 3 hours a week on it. Of those who do screen-based activities, <strong>64%</strong> spend 10 hours or more. Far more children take part in screen-based activities too: 2.9 million, against 1.2 million doing arts and crafts.</p>
+      </div>
+      <div class="pure-u-1 pure-u-md-17-24">
+        <figure class="figure">
+          <div id="vis10"></div>
+                  </figure>
+      </div>
+    </div>
+    <p>Why does creativity matter? In Creative Australia's National Arts Participation Survey 2022, adults who were asked about its effects gave a clear answer, and women gave it more strongly. These are shares <em>within</em> each sex, not headcounts, so the larger women's shape means higher rates, not more women. Women rated the benefits higher than men on all eight areas shown. Women rated the benefits higher than men on all eight areas shown. The biggest gaps, about 16 percentage points, are for dealing with stress and for wellbeing and happiness.</p>
+    <figure class="figure">
+      <div id="vis11"></div>
+          </figure>
+  </section>
+
+  <section class="closing">
+    <h2>So what?</h2>
+    <p>Craft is common, casual and mostly done by women. It starts in childhood, competes with screens, and it is not a business for most people who do it. Whether it is a shed, a sewing table or a kitchen bench, it is a hobby worth noticing.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <h2>About this page</h2>
+    <div class="pure-g">
+      <div class="pure-u-1 pure-u-md-1-2 foot-col">
+        <p><strong>Author:</strong> <span class="todo">[Your name]</span>, FIT3179 Data Visualisation, Monash University. Published <span class="todo">[date]</span>.</p>
+        <h3>Notes</h3>
+        <ul>
+          <li>The state maps (charts 5 and 6) cover all cultural and creative activities, not craft alone.</li>
+          <li>People can do several activities, so activity counts overlap.</li>
+          <li>Northern Territory results come from small samples and are less certain.</li>
+          <li>Charts were built with <a href="https://vega.github.io/vega-lite/">Vega-Lite</a>. The JSON for every chart is in the <a href="vega/">vega folder</a> of the repository.</li>
+        </ul>
+        <p class="ai"><strong>AI acknowledgement:</strong> <span class="todo">[Edit this to match how you used AI.]</span> Claude (Anthropic) helped with data preparation, chart code and drafting text. All figures were checked against the source tables.</p>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2 foot-col">
+        <h3>Data sources</h3>
+        <ul>
+          <li>Australian Bureau of Statistics, <a href="https://www.abs.gov.au/statistics/people/people-and-communities/cultural-and-creative-activities/2021-22"><em>Cultural and creative activities, 2021-22</em></a>, Tables 1, 3, 4, 5, 7 and 10.</li>
+          <li>Creative Australia, <a href="https://creative.gov.au/"><em>National Arts Participation Survey 2022</em></a>, Table 13.</li>
+          <li><a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (ODbL), craft, fabric, wool, haberdashery and sewing shops, downloaded <span class="todo">[date]</span>.</li>
+          <li>State boundaries: <a href="https://www.naturalearthdata.com/">Natural Earth</a> (public domain), simplified with mapshaper.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
