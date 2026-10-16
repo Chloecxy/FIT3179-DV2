@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Made by hand: who crafts in Australia
 
 FIT3179 Data Visualisation 2. A single-page data story built with Vega-Lite.
