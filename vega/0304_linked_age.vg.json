@@ -197,7 +197,7 @@
       "data": {
         "url": "data/04_activity_age_ranks.csv"
       },
-      "width":880,
+      "width": 880,
       "height": 400,
       "layer": [
         {
@@ -458,7 +458,8 @@
             "type": "text",
             "fontSize": 11,
             "fontWeight": 700,
-            "color": "white"
+            "color": "white",
+            "align": "center"
           },
           "encoding": {
             "x": {

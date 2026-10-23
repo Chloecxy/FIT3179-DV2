@@ -127,6 +127,8 @@ main strong.blue { color: var(--men); }
 .figure { margin: 20px 0 20px; padding: 10px 8px; background: none; border: none; overflow-x: auto; }
 .split .figure { margin: 0 0 20px; padding: 4px 4px; }
 .figure .vega-embed { display: block; }
+/* Charts scale down to the column instead of forcing a horizontal scrollbar. */
+.figure .vega-embed svg { max-width: 100%; height: auto; }
 .figure .vega-embed details, .figure .vega-embed summary { font-family: var(--sans); }
 .closing p { line-height: 1.6; }
 
