@@ -13,6 +13,7 @@
   --line: #E3E1D8;
   --craft: #D98E04;
   --teal: #2A7F9E;
+  --screen: #1F06AC; /* vis10 screen-based dot/legend colour */
   --women: #D8639A;
   --men: #4A86C5;
   --bold: #2A7F9E;
@@ -115,18 +116,29 @@ strong { font-weight: 600; }
 main strong { color: var(--bold); font-weight: 700; }
 main strong.pink { color: var(--women); }
 main strong.blue { color: var(--men); }
+main strong.screen { color: var(--screen); }
 
 .note { max-width: 62ch; padding: 4px 0 4px 16px; border-left: 4px solid var(--craft); font-size: 16px; color: var(--muted); }
 
 /* ---------- Text beside chart ---------- */
 .split { margin-top: 8px; }
-.split-text { padding-right: 28px; }
+.split-text { padding-right: 25px; }
 .split-text p { margin-bottom: 0; }
+.split-right { padding-left: 40px;}
 
 /* ---------- Chart cards ---------- */
 .figure { margin: 20px 0 20px; padding: 10px 8px; background: none; border: none; overflow-x: auto; }
 .split .figure { margin: 0 0 20px; padding: 4px 4px; }
+/* The choropleth SVG carries empty space below Tasmania; tuck the symbol maps up into it. */
+.figure--choropleth { margin-bottom: -3.5%; padding-bottom: 0; }
+.figure--symbols { margin-top: 0; padding-top: 0; }
 .figure .vega-embed { display: block; }
+/* Zoom and centre controls for the shops dot map. */
+.figure .vega-bindings { display: flex; flex-wrap: wrap; gap: 5px 20px; align-items: center; margin: 2px 0 0; padding: 0 2px; font-family: var(--sans); font-size: 12px; color: var(--muted); }
+.figure .vega-bindings .vega-bind, .figure .vega-bindings label { display: flex; align-items: center; gap: 6px; }
+.figure .vega-bindings input[type="range"] { width: 140px; accent-color: var(--craft); }
+.figure .vega-bindings select { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 3px; padding: 1px 4px; }
+.figure .vega-bindings input[type="range"] + span { min-width: 2.6em; color: var(--ink); font-variant-numeric: tabular-nums; }
 /* Charts scale down to the column instead of forcing a horizontal scrollbar. */
 .figure .vega-embed svg { max-width: 100%; height: auto; }
 .figure .vega-embed details, .figure .vega-embed summary { font-family: var(--sans); }
@@ -164,6 +176,6 @@ footer { margin-top: 40px; background: var(--mat-dark); color: #E5EDE8; }
   .tape-inner li + li { border-left: none; padding-left: 0; }
   .split-text { padding-right: 0; margin-bottom: 16px; }
   .intro-col { padding-right: 0; }
-  .figure { padding: 12px 10px 8px; }
+  .figure { padding: 12px 10px 5px; }
   .foot-col { padding-right: 0; }
 }

@@ -1,14 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": [
-      "More women take part, but they don't try more activities than",
-      "men"
-    ]
+    "text": "More Women Take Part, but They Don't Try More Activities Than Men",
+    "offset": 26
+  },
+  "padding":{
+    "left": 10,
+    "right": 5,
+    "bottom": 5,
+    "top": 5
   },
   "hconcat": [
     {
-      "width": 410,
+      "width": 500,
       "height": 400,
       "title": {
         "text": "Men",
@@ -29,9 +33,9 @@
           0,
           -27
         ],
-        "scale": 560,
+        "scale": 660,
         "translate": [
-          205,
+          260,
           195
         ]
       },
@@ -82,10 +86,7 @@
             "size": {
               "field": "pct_of_participants_doing_3plus_types",
               "type": "quantitative",
-              "title": [
-                "Of those, share doing",
-                "3+ kinds of activity (%)"
-              ],
+              "title": "Of those, share doing 3+ kinds of activity (%)",
               "scale": {
                 "domain": [
                   0,
@@ -96,24 +97,12 @@
                   1700
                 ]
               },
-              "legend": {
-                "orient": "top",
-                "direction": "horizontal",
-                "values": [
-                  10,
-                  20,
-                  30
-                ],
-                "symbolFillColor": "#B9B5AB",
-                "symbolStrokeColor": "white",
-                "offset": 24,
-                "labelExpr": "datum.value === 10 ? 'Under 10%' : datum.value === 20 ? '10% to 20%' : '20% to 30%'"
-              }
+              "legend": null
             },
             "color": {
               "field": "cls",
               "type": "nominal",
-              "title": "Men who took part",
+              "title": "Men Who Took Part",
               "sort": [
                 "Under 25%",
                 "25% to 35%",
@@ -154,19 +143,147 @@
               },
               {
                 "field": "participation_rate_pct",
-                "title": "% who took part"
+                "title": "% Who Took Part"
               },
               {
                 "field": "pct_of_participants_doing_3plus_types",
-                "title": "% doing 3+ kinds"
+                "title": "% Who Did 3+ Kinds of Activity"
               }
             ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "cx": 235,
+                "cy": -65,
+                "sz": 142
+              },
+              {
+                "cx": 235,
+                "cy": -45,
+                "sz": 282
+              },
+              {
+                "cx": 235,
+                "cy": -25,
+                "sz": 424
+              }
+            ]
+          },
+          "mark": {
+            "type": "circle",
+            "fill": "#B9B5AB",
+            "stroke": "white",
+            "strokeWidth": 1.5,
+            "opacity": 0.92
+          },
+          "encoding": {
+            "x": {
+              "field": "cx",
+              "type": "quantitative",
+              "scale": null,
+              "axis": null
+            },
+            "y": {
+              "field": "cy",
+              "type": "quantitative",
+              "scale": null,
+              "axis": null
+            },
+            "size": {
+              "field": "sz",
+              "type": "quantitative",
+              "scale": null,
+              "legend": null
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "lx": 250.5,
+                "ly": -65,
+                "label": "Under 10%"
+              },
+              {
+                "lx": 250.5,
+                "ly": -45,
+                "label": "10% to 20%"
+              },
+              {
+                "lx": 250.5,
+                "ly": -25,
+                "label": "20% to 30%"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "fontSize": 12,
+            "color": "#2A2A28"
+          },
+          "encoding": {
+            "x": {
+              "field": "lx",
+              "type": "quantitative",
+              "scale": null,
+              "axis": null
+            },
+            "y": {
+              "field": "ly",
+              "type": "quantitative",
+              "scale": null,
+              "axis": null
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "tx": 224.5,
+                "ty": -81,
+                "t": "Share Doing 3+ Kinds of Activity (%)"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "alphabetic",
+            "fontSize": 12,
+            "fontWeight": 600,
+            "color": "#2A2A28"
+          },
+          "encoding": {
+            "x": {
+              "field": "tx",
+              "type": "quantitative",
+              "scale": null,
+              "axis": null
+            },
+            "y": {
+              "field": "ty",
+              "type": "quantitative",
+              "scale": null,
+              "axis": null
+            },
+            "text": {
+              "field": "t"
+            }
           }
         }
       ]
     },
     {
-      "width": 410,
+      "width": 500,
       "height": 400,
       "title": {
         "text": "Women",
@@ -187,9 +304,9 @@
           0,
           -27
         ],
-        "scale": 560,
+        "scale": 660,
         "translate": [
-          205,
+          260,
           195
         ]
       },
@@ -254,24 +371,12 @@
                   1700
                 ]
               },
-              "legend": {
-                "orient": "top",
-                "direction": "horizontal",
-                "values": [
-                  10,
-                  20,
-                  30
-                ],
-                "symbolFillColor": "#B9B5AB",
-                "symbolStrokeColor": "white",
-                "offset": 24,
-                "labelExpr": "datum.value === 10 ? 'Under 10%' : datum.value === 20 ? '10% to 20%' : '20% to 30%'"
-              }
+              "legend": null
             },
             "color": {
               "field": "cls",
               "type": "nominal",
-              "title": "Women who took part",
+              "title": "Women Who Took Part",
               "sort": [
                 "Under 25%",
                 "25% to 35%",
@@ -312,11 +417,11 @@
               },
               {
                 "field": "participation_rate_pct",
-                "title": "% who took part"
+                "title": "% Who Took Part"
               },
               {
                 "field": "pct_of_participants_doing_3plus_types",
-                "title": "% doing 3+ kinds"
+                "title": "% Who Did 3+ Kinds of Activity"
               }
             ]
           }
@@ -324,6 +429,7 @@
       ]
     }
   ],
+  "spacing": 100,
   "resolve": {
     "scale": {
       "color": "independent",

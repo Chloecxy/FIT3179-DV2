@@ -22,6 +22,19 @@ Promise.all([fetch("vega/config.json").then(r => r.json()), fontsReady]).then(([
       config: config,
       renderer: "svg",
       actions: false
+    }).then(result => {
+      // Choosing a region should always show that region in full: reset the
+      // relative zoom when the map view changes.
+      if (id === "vis14") {
+        result.view.addSignalListener("map_view", () => {
+          result.view.signal("zoom_factor", 1).run();
+          const range = document.querySelector('#vis14 .vega-bindings input[type="range"]');
+          if (range) {
+            range.value = "1";
+            if (range.nextElementSibling) range.nextElementSibling.textContent = "1";
+          }
+        });
+      }
     }).catch(error => {
       console.error("Chart failed:", url, error);
       document.getElementById(id).innerHTML = "<p>Sorry, this chart could not be loaded.</p>";

@@ -1,17 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": [
-      "Most crafters spend under 10 hours a week, and half keep going",
-      "for months"
-    ]
+    "text": "Most Crafters Spend Under 10 Hours A Week",
+    "offset": 15
   },
   "data": {
     "url": "data/08_activity_hours.csv"
   },
   "transform": [
     {
-      "calculate": "indexof(datum.involvement, '1–13') == 0 ? 'Up to 13 weeks' : 'Over 13 weeks'",
+      "calculate": "indexof(datum.involvement, '1-13') == 0 ? 'Up to 13 Weeks' : 'Over 13 Weeks'",
       "as": "stint"
     },
     {
@@ -36,7 +34,7 @@
           "orient": "top",
           "labelAngle": 0,
           "labelFontSize": 12,
-          "title": "Hours a week",
+          "title": "Hours a Week",
           "titleFontSize": 11
         },
         "title": null
@@ -76,7 +74,7 @@
           "color": {
             "field": "pct_of_participants",
             "type": "quantitative",
-            "title": "% of participants",
+            "title": "% of Participants",
             "scale": {
               "domain": [
                 0,
@@ -84,7 +82,7 @@
               ],
               "range": [
                 "#FBF1D6",
-                "#D98E04"
+                "#FFCB56"
               ]
             },
             "legend": {
@@ -104,12 +102,17 @@
             },
             {
               "field": "pct_of_participants",
-              "title": "% of participants"
+              "title": "% of Participants"
             }
           ]
         }
       },
       {
+        "transform": [
+          {
+            "filter": "datum.activity == 'Craft'"
+          }
+        ],
         "mark": {
           "type": "text",
           "fontSize": 12,
@@ -150,8 +153,8 @@
       "type": "nominal",
       "title": null,
       "sort": [
-        "Up to 13 weeks",
-        "Over 13 weeks"
+        "Up to 13 Weeks",
+        "Over 13 Weeks"
       ],
       "header": {
         "labelOrient": "top",

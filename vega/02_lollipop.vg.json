@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Most Common Creative Activities Among Australian Adults"
+    "text": "Most Common Creative Activities Among Australian Adults",
+    "offset": 10
   },
   "data": {
     "url": "data/02_activity_participants.csv"
@@ -92,7 +93,7 @@
           },
           {
             "field": "rate_pct_of_adults",
-            "title": "% of adults"
+            "title": "% of Adults"
           }
         ]
       }

@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Women rate the benefits of creativity higher on every measure"
+    "text": "Women Rate the Benefits of Creativity Higher on Every Measure",
+    "offset": 15
   },
   "width": 490,
   "height": 420,
@@ -326,7 +327,7 @@
           },
           {
             "field": "val",
-            "title": "% saying big impact"
+            "title": "% Saying Big Impact"
           }
         ]
       }
@@ -452,7 +453,7 @@
           },
           {
             "field": "val",
-            "title": "% saying big impact"
+            "title": "% Saying Big Impact"
           }
         ]
       }
@@ -705,54 +706,6 @@
         },
         "text": {
           "field": "lab",
-          "type": "nominal"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
-            "x": -1.1456,
-            "y": -1.1456,
-            "t": "Widest gap: 16 pts"
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "dx": -8,
-        "dy": -14,
-        "fontSize": 12,
-        "fontWeight": 700,
-        "color": "#2A7F9E"
-      },
-      "encoding": {
-        "x": {
-          "field": "x",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              -1.75,
-              1.75
-            ]
-          },
-          "axis": null
-        },
-        "y": {
-          "field": "y",
-          "type": "quantitative",
-          "scale": {
-            "domain": [
-              -1.5,
-              1.5
-            ]
-          },
-          "axis": null
-        },
-        "text": {
-          "field": "t",
           "type": "nominal"
         }
       }

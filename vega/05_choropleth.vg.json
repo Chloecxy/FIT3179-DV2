@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Tasmania and the ACT Have the Most Creative People per Head",
-    "offset": 26
+    "text": "Tasmania and the ACT Have Australia's Highest Participation Rates",
+    "offset": 15
   },
   "width": 1000,
-  "height": 540,
+  "height": 560,
   "projection": {
     "type": "conicEqualArea",
     "parallels": [
@@ -95,7 +95,7 @@
           },
           {
             "field": "participation_rate_pct",
-            "title": "% who took part"
+            "title": "% Who Took Part"
           },
           {
             "field": "participants_thousand",
@@ -351,7 +351,7 @@
         "type": "rect",
         "fill": "#F7F5F1",
         "stroke": "#D5D2C9",
-        "strokeWidth": 1,
+        "strokeWidth": 1.5,
         "cornerRadius": 6
       },
       "encoding": {
@@ -365,7 +365,7 @@
           "value": 20
         },
         "y2": {
-          "value": 140
+          "value": 124
         }
       }
     },
@@ -373,7 +373,7 @@
       "data": {
         "values": [
           {
-            "y": 34,
+            "y": 35,
             "t": "Big isn't the same as high"
           }
         ]
@@ -382,13 +382,13 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "fontSize": 11,
+        "fontSize": 15,
         "fontWeight": 700,
-        "color": "#2A2A28"
+        "color": "#1C1C1A"
       },
       "encoding": {
         "x": {
-          "value": 786
+          "value": 788
         },
         "y": {
           "field": "y",
@@ -405,12 +405,39 @@
       "data": {
         "values": [
           {
-            "y": 56,
-            "t": "NSW: most participants (2.04 million)"
-          },
+            "x": 788,
+            "y": 49,
+            "x2": 978
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#DED9CC",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": null
+        },
+        "x2": {
+          "field": "x2"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
           {
-            "y": 77,
-            "t": "but a rate of only 31.7%."
+            "y": 73,
+            "t": "2.04M"
           }
         ]
       },
@@ -418,13 +445,13 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "fontSize": 10,
+        "fontSize": 14,
         "fontWeight": 700,
-        "color": "#2A2A28"
+        "color": "#1C1C1A"
       },
       "encoding": {
         "x": {
-          "value": 786
+          "value": 788
         },
         "y": {
           "field": "y",
@@ -441,12 +468,8 @@
       "data": {
         "values": [
           {
-            "y": 98,
-            "t": "Tasmania: highest rate of any state (41.9%)"
-          },
-          {
-            "y": 119,
-            "t": "with just 194,300 participants."
+            "y": 105,
+            "t": "45.4%"
           }
         ]
       },
@@ -454,13 +477,48 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "fontSize": 10,
+        "fontSize": 14,
         "fontWeight": 700,
         "color": "#1F5C4A"
       },
       "encoding": {
         "x": {
-          "value": 786
+          "value": 788
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": null
+        },
+        "text": {
+          "field": "t",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "y": 73,
+            "t": "most people, NSW"
+          },
+          {
+            "y": 105,
+            "t": "highest rate, ACT"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "fontSize": 12,
+        "color": "#55554F"
+      },
+      "encoding": {
+        "x": {
+          "value": 830
         },
         "y": {
           "field": "y",
@@ -479,15 +537,15 @@
           {
             "x": 728,
             "y": 349,
-            "x2": 790,
-            "y2": 140
+            "x2": 890,
+            "y2": 125
           }
         ]
       },
       "mark": {
         "type": "rule",
         "color": "#9A978D",
-        "strokeWidth": 1
+        "strokeWidth": 1.5
       },
       "encoding": {
         "x": {
@@ -501,12 +559,10 @@
           "scale": null
         },
         "x2": {
-          "field": "x2",
-          "scale": null
+          "field": "x2"
         },
         "y2": {
-          "field": "y2",
-          "scale": null
+          "field": "y2"
         }
       }
     }

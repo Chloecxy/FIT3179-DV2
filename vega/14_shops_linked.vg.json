@@ -1,21 +1,83 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Drag across the bars to see those states on the map"
-  },
-  "padding": {
-    "left": 5,
-    "right": 5,
-    "top": 5,
-    "bottom": 5
-  },
+  "params": [
+    {
+      "name": "map_view",
+      "value": "AU",
+      "bind": {
+        "input": "select",
+        "options": [
+          "AU",
+          "SE",
+          "NSW",
+          "VIC",
+          "QLD",
+          "WA",
+          "SA",
+          "TAS",
+          "NT"
+        ],
+        "labels": [
+          "All of Australia",
+          "South-east",
+          "New South Wales",
+          "Victoria",
+          "Queensland",
+          "Western Australia",
+          "South Australia",
+          "Tasmania",
+          "Northern Territory"
+        ],
+        "name": "Map view "
+      }
+    },
+    {
+      "name": "view_centers",
+      "value": {
+        "AU": [-0.82, -27.2],
+        "SE": [13.92, -35.93],
+        "NSW": [13.71, -33.1],
+        "VIC": [11.31, -36.48],
+        "QLD": [11.14, -19.88],
+        "WA": [-12.75, -24.42],
+        "SA": [1.06, -32.1],
+        "TAS": [12.31, -41.53],
+        "NT": [-0.54, -18.61]
+      }
+    },
+    {
+      "name": "fit_scales",
+      "value": {
+        "AU": 660,
+        "SE": 1500,
+        "NSW": 2420,
+        "VIC": 4080,
+        "QLD": 1120,
+        "WA": 1000,
+        "SA": 1810,
+        "TAS": 5400,
+        "NT": 1480
+      }
+    },
+    {
+      "name": "zoom_factor",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "min": 0.7,
+        "max": 2.5,
+        "step": 0.1,
+        "name": "Zoom x "
+      }
+    }
+  ],
   "vconcat": [
     {
       "title": {
-        "text": "Mapped shops by state",
-        "fontSize": 13,
-        "fontWeight": 600,
-        "anchor": "start"
+        "text": "Where Do They Get Their Supplies?",
+        "subtitle": "Drag across the bars to filter the map to those states",
+        "subtitleFontSize": 13,
+        "offset": 15
       },
       "data": {
         "url": "data/07_craft_shops.csv"
@@ -45,12 +107,12 @@
         }
       ],
       "width": 580,
-      "height": 110,
+      "height": 120,
       "mark": {
         "type": "bar",
         "tooltip": true,
         "cursor": "ew-resize",
-        "fill": "#D98E04"
+        "fill": "#D96868"
       },
       "encoding": {
         "x": {
@@ -65,7 +127,10 @@
         "y": {
           "field": "n",
           "type": "quantitative",
-          "title": "Mapped shops"
+          "title": "Mapped Shops",
+          "axis": {
+            "orient": "right"
+          }
         },
         "opacity": {
           "condition": {
@@ -88,10 +153,8 @@
     },
     {
       "title": {
-        "text": "Where the brushed shops are",
-        "fontSize": 13,
-        "fontWeight": 600,
-        "anchor": "start"
+        "text": "Where The Supply Shops Are?",
+        "offset": 30
       },
       "width": 580,
       "height": 440,
@@ -105,11 +168,16 @@
           -134,
           0
         ],
-        "center": [
-          -2,
-          -7
+        "center": {
+          "expr": "view_centers[map_view]"
+        },
+        "translate": [
+          290,
+          220
         ],
-        "scale": 600
+        "scale": {
+          "expr": "fit_scales[map_view] * zoom_factor"
+        }
       },
       "layer": [
         {
@@ -145,7 +213,7 @@
           ],
           "mark": {
             "type": "circle",
-            "size": 37,
+            "size": 40,
             "opacity": 0.7,
             "stroke": "white",
             "strokeWidth": 0.3
@@ -170,7 +238,7 @@
                 ],
                 "range": [
                   "#D98E04",
-                  "#2A7F9E"
+                  "#9564DD"
                 ]
               },
               "legend": {
@@ -212,9 +280,10 @@
       ]
     }
   ],
-  "spacing": 30,
-  "autosize": {
-    "type": "fit-x",
-    "contains": "padding"
+  "spacing": 50,
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
   }
 }

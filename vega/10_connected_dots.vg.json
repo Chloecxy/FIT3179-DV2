@@ -1,10 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": [
-      "Half of children who craft do under 3 hours a week; most",
-      "screen users do 10 or more"
-    ]
+    "text": "Half of Children Who Craft Do Under 3 Hours a Week",
+    "offset": 15
   },
   "data": {
     "url": "data/10_children_hours.csv"
@@ -23,13 +21,13 @@
       "field": "hours_per_week",
       "type": "ordinal",
       "sort": [
-        "0–2",
-        "3–4",
-        "5–9",
-        "10–19",
+        "0-2",
+        "3-4",
+        "5-9",
+        "10-19",
         "20+"
       ],
-      "title": "Hours per week",
+      "title": "Hours per Week",
       "axis": {
         "domain": false,
         "ticks": false,
@@ -66,7 +64,7 @@
         "x": {
           "field": "pct_of_children_doing_it",
           "type": "quantitative",
-          "title": "% of the children who do the activity",
+          "title": "% of Children Who Do the Activity",
           "scale": {
             "domain": [
               0,
@@ -85,7 +83,7 @@
             ],
             "range": [
               "#D98E04",
-              "#2A7F9E"
+              "#1F06AC"
             ]
           },
           "legend": {
@@ -101,11 +99,11 @@
           },
           {
             "field": "hours_per_week",
-            "title": "Hours a week"
+            "title": "Hours a Week"
           },
           {
             "field": "pct_of_children_doing_it",
-            "title": "% of children"
+            "title": "% of Children"
           },
           {
             "field": "children_thousand",
@@ -152,13 +150,13 @@
         "values": [
           {
             "activity": "Arts and crafts",
-            "hours_per_week": "0–2",
+            "hours_per_week": "0-2",
             "v": 51.1,
             "t": "peaks at 51%"
           },
           {
             "activity": "Screen-based activities",
-            "hours_per_week": "10–19",
+            "hours_per_week": "10-19",
             "v": 40,
             "t": "peaks at 40%"
           }
@@ -180,10 +178,10 @@
           "field": "hours_per_week",
           "type": "ordinal",
           "sort": [
-            "0–2",
-            "3–4",
-            "5–9",
-            "10–19",
+            "0-2",
+            "3-4",
+            "5-9",
+            "10-19",
             "20+"
           ]
         },

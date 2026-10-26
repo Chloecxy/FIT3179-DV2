@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Craft is a hobby, not a side hustle"
+    "text": "Craft Is A Hobby, Not A Side Hustle",
+    "offset": 15
   },
   "data": {
     "url": "data/09_income_volunteer.csv"
@@ -33,7 +34,7 @@
       "as": "answer"
     }
   ],
-  "width": 600,
+  "width": 850,
   "height": {
     "step": 44
   },
@@ -56,7 +57,7 @@
     "x": {
       "field": "value",
       "type": "quantitative",
-      "title": "% of people who did craft",
+      "title": "% of People Who Did Craft",
       "scale": {
         "domain": [
           0,
@@ -98,7 +99,7 @@
               "No"
             ],
             "range": [
-              "#D98E04",
+              "#3E0F8D",
               "#E4E2DA"
             ]
           },

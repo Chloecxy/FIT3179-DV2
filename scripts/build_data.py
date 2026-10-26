@@ -21,7 +21,7 @@ T17 = "cultural_and_creative_activities_202122_tables_1_to_7.xlsx"
 T813 = "cultural_and_creative_activities_202122_tables_8_to_13.xlsx"
 NAPS = "REF_NAPS-2022-Data-Tables.xlsx"
 
-AGES = ["15–24", "25–34", "35–44", "45–54", "55–64", "65+"]
+AGES = ["15-24", "25-34", "35-44", "45-54", "55-64", "65+"]
 ACT = {  # source label prefix -> plain-English name
     "Performing in a drama": "Acting and performing",
     "Singing or playing": "Singing or playing an instrument",
@@ -114,7 +114,7 @@ write("07_craft_shops.csv", ["state", "shop_type", "group", "name", "lon", "lat"
 
 # ---------- Table 7: hours heatmap ----------
 t7 = sheet(T17, "Table 7")
-COLS = ["1–13 weeks, under 10 hours a week", "1–13 weeks, 10+ hours a week", "Over 13 weeks, under 10 hours a week", "Over 13 weeks, 10+ hours a week"]
+COLS = ["1-13 weeks, under 10 hours a week", "1-13 weeks, 10+ hours a week", "Over 13 weeks, under 10 hours a week", "Over 13 weeks, 10+ hours a week"]
 rows08 = []
 abs_pct = {}   # ABS's own percentage block (second occurrence of each activity), used as a cross-check
 seen = {}
@@ -151,7 +151,7 @@ write("09_income_volunteer.csv", ["activity", "measure", "participants_thousand"
 
 # ---------- Table 10: children's hours ----------
 t10 = sheet(T813, "Table 10")
-BANDS = ["0–2", "3–4", "5–9", "10–19", "20+"]
+BANDS = ["0-2", "3-4", "5-9", "10-19", "20+"]
 rows10 = []
 for idx, name in ((25, "Arts and crafts"), (29, "Screen-based activities"), (30, "Reading for pleasure")):
     cnt = {25: 13, 29: 17, 30: 18}[idx]

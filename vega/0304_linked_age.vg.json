@@ -1,8 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "How Does Craft Participation Vary by Age and Gender?"
-  },
+  
   "padding": {
     "left": 0,
     "right": 5,
@@ -12,8 +10,10 @@
   "vconcat": [
     {
       "title": {
-        "text": "Drag across the age groups to focus the chart below",
-        "fontSize": 14
+        "text": "How Does Craft Participation Vary by Age and Gender?",
+        "subtitle": "Drag across the age groups to focus the chart below",
+        "subtitleFontSize": 13,
+        "offset": 15
       },
       "data": {
         "url": "data/03_craft_rate_by_age_sex.csv"
@@ -50,7 +50,7 @@
         "x": {
           "field": "signed",
           "type": "quantitative",
-          "title": "Share of adults who craft (%)",
+          "title": "Share of Adults Who Craft (%)",
           "scale": {
             "domain": [
               -30,
@@ -340,7 +340,7 @@
                 },
                 {
                   "test": "datum.activity == 'Painting, drawing and sculpting'",
-                  "value": "#2A7F9E"
+                  "value": "#A8BBA3"
                 }
               ],
               "value": "#8D8A80"
@@ -420,7 +420,7 @@
                 },
                 {
                   "test": "datum.activity == 'Painting, drawing and sculpting'",
-                  "value": "#2A7F9E"
+                  "value": "#A8BBA3"
                 }
               ],
               "value": "#8D8A80"
