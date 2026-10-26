@@ -31,7 +31,7 @@
       "axis": {
         "domain": false,
         "ticks": false,
-        "labelFontSize": 13
+        "labelFontSize": 15
       }
     }
   },
@@ -117,7 +117,7 @@
       "mark": {
         "type": "text",
         "dy": -16,
-        "fontSize": 12,
+        "fontSize": 14,
         "fontWeight": 700
       },
       "encoding": {
@@ -139,7 +139,7 @@
             ],
             "range": [
               "#D98E04",
-              "#2A7F9E"
+              "#1F06AC"
             ]
           }
         }
@@ -165,7 +165,7 @@
       "mark": {
         "type": "text",
         "dy": 20,
-        "fontSize": 11,
+        "fontSize": 14,
         "fontWeight": 700,
         "color": "#2A7F9E"
       },

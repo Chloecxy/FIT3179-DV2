@@ -143,7 +143,7 @@
             "type": "text",
             "align": "right",
             "dx": -6,
-            "fontSize": 16,
+            "fontSize": 14,
             "fontWeight": 600
           },
           "encoding": {
@@ -170,7 +170,7 @@
             "type": "text",
             "align": "left",
             "dx": 6,
-            "fontSize": 16,
+            "fontSize": 14,
             "fontWeight": 600
           },
           "encoding": {
@@ -237,7 +237,7 @@
                 "orient": "bottom",
                 "labelAngle": 0,
                 "labelPadding": 14,
-                "labelFontSize": 13,
+                "labelFontSize": 15,
                 "domain": false,
                 "ticks": false,
                 "grid": false
@@ -305,7 +305,7 @@
                 "orient": "bottom",
                 "labelAngle": 0,
                 "labelPadding": 14,
-                "labelFontSize": 13,
+                "labelFontSize": 15,
                 "domain": false,
                 "ticks": false,
                 "grid": false
@@ -385,7 +385,7 @@
                 "orient": "bottom",
                 "labelAngle": 0,
                 "labelPadding": 14,
-                "labelFontSize": 13,
+                "labelFontSize": 15,
                 "domain": false,
                 "ticks": false,
                 "grid": false
@@ -456,7 +456,7 @@
           ],
           "mark": {
             "type": "text",
-            "fontSize": 11,
+            "fontSize": 13,
             "fontWeight": 700,
             "color": "white",
             "align": "center"
@@ -481,7 +481,7 @@
                 "orient": "bottom",
                 "labelAngle": 0,
                 "labelPadding": 14,
-                "labelFontSize": 13,
+                "labelFontSize": 15,
                 "domain": false,
                 "ticks": false,
                 "grid": false
@@ -551,7 +551,7 @@
             "type": "text",
             "align": "right",
             "dx": -16,
-            "fontSize": 10
+            "fontSize": 13
           },
           "encoding": {
             "x": {
@@ -573,7 +573,7 @@
                 "orient": "bottom",
                 "labelAngle": 0,
                 "labelPadding": 14,
-                "labelFontSize": 13,
+                "labelFontSize": 15,
                 "domain": false,
                 "ticks": false,
                 "grid": false
@@ -655,7 +655,7 @@
             "type": "text",
             "align": "left",
             "dx": 16,
-            "fontSize": 10
+            "fontSize": 13
           },
           "encoding": {
             "x": {
@@ -677,7 +677,7 @@
                 "orient": "bottom",
                 "labelAngle": 0,
                 "labelPadding": 14,
-                "labelFontSize": 13,
+                "labelFontSize": 15,
                 "domain": false,
                 "ticks": false,
                 "grid": false
@@ -740,7 +740,7 @@
           "mark": {
             "type": "text",
             "dy": -24,
-            "fontSize": 13,
+            "fontSize": 14,
             "fontWeight": 700,
             "color": "#D98E04"
           },
@@ -764,7 +764,7 @@
                 "orient": "bottom",
                 "labelAngle": 0,
                 "labelPadding": 14,
-                "labelFontSize": 13,
+                "labelFontSize": 15,
                 "domain": false,
                 "ticks": false,
                 "grid": false

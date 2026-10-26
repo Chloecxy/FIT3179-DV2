@@ -17,14 +17,14 @@
     "labelPadding": 8
   },
   "legend": {
-    "labelFontSize": 12,
-    "titleFontSize": 12,
+    "labelFontSize": 14,
+    "titleFontSize": 14,
     "titleFontWeight": 600,
     "labelColor": "#2A2A28",
     "titleColor": "#2A2A28"
   },
   "header": {
-    "labelFontSize": 15,
+    "labelFontSize": 16,
     "labelFontWeight": 700,
     "labelColor": "#2A2A28"
   },

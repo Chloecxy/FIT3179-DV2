@@ -48,7 +48,7 @@
         "Volunteered"
       ],
       "axis": {
-        "labelFontSize": 13,
+        "labelFontSize": 15,
         "labelLimit": 340,
         "domain": false,
         "ticks": false
@@ -99,7 +99,7 @@
               "No"
             ],
             "range": [
-              "#3E0F8D",
+              "#A55704",
               "#E4E2DA"
             ]
           },

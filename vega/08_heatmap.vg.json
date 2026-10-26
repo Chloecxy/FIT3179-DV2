@@ -33,9 +33,9 @@
         "axis": {
           "orient": "top",
           "labelAngle": 0,
-          "labelFontSize": 12,
+          "labelFontSize": 15,
           "title": "Hours a Week",
-          "titleFontSize": 11
+          "titleFontSize": 15
         },
         "title": null
       },
@@ -115,7 +115,7 @@
         ],
         "mark": {
           "type": "text",
-          "fontSize": 12,
+          "fontSize": 14,
           "fontWeight": 600
         },
         "encoding": {

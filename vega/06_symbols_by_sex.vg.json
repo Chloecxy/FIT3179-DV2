@@ -223,7 +223,7 @@
           "mark": {
             "type": "text",
             "align": "left",
-            "fontSize": 12,
+            "fontSize": 14,
             "color": "#2A2A28"
           },
           "encoding": {
@@ -258,7 +258,7 @@
             "type": "text",
             "align": "left",
             "baseline": "alphabetic",
-            "fontSize": 12,
+            "fontSize": 14,
             "fontWeight": 600,
             "color": "#2A2A28"
           },

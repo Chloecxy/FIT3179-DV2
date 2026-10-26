@@ -175,7 +175,7 @@
         "align": "left",
         "dx": 4,
         "dy": -3,
-        "fontSize": 11,
+        "fontSize": 13,
         "color": "#6F6C63"
       },
       "encoding": {
@@ -508,7 +508,7 @@
       "mark": {
         "type": "text",
         "align": "left",
-        "fontSize": 13,
+        "fontSize": 14,
         "fontWeight": 600,
         "color": "#2A2A28",
         "dx": 0
@@ -592,7 +592,7 @@
       "mark": {
         "type": "text",
         "align": "right",
-        "fontSize": 13,
+        "fontSize": 14,
         "fontWeight": 600,
         "color": "#2A2A28",
         "dx": 0
@@ -676,7 +676,7 @@
       "mark": {
         "type": "text",
         "align": "center",
-        "fontSize": 13,
+        "fontSize": 14,
         "fontWeight": 600,
         "color": "#2A2A28",
         "dx": 0

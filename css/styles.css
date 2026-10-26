@@ -134,10 +134,10 @@ main strong.screen { color: var(--screen); }
 .figure--symbols { margin-top: 0; padding-top: 0; }
 .figure .vega-embed { display: block; }
 /* Zoom and centre controls for the shops dot map. */
-.figure .vega-bindings { display: flex; flex-wrap: wrap; gap: 5px 20px; align-items: center; margin: 2px 0 0; padding: 0 2px; font-family: var(--sans); font-size: 12px; color: var(--muted); }
-.figure .vega-bindings .vega-bind, .figure .vega-bindings label { display: flex; align-items: center; gap: 6px; }
-.figure .vega-bindings input[type="range"] { width: 140px; accent-color: var(--craft); }
-.figure .vega-bindings select { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 3px; padding: 1px 4px; }
+.figure .vega-bindings { display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; margin: 4px 0 0; padding: 0 2px; font-family: var(--sans); font-size: 14px; color: var(--muted); }
+.figure .vega-bindings .vega-bind, .figure .vega-bindings label { display: flex; align-items: center; gap: 8px; }
+.figure .vega-bindings input[type="range"] { width: 190px; height: 24px; accent-color: var(--craft); cursor: pointer; }
+.figure .vega-bindings select { font: inherit; min-height: 32px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 4px 8px; cursor: pointer; }
 .figure .vega-bindings input[type="range"] + span { min-width: 2.6em; color: var(--ink); font-variant-numeric: tabular-nums; }
 /* Charts scale down to the column instead of forcing a horizontal scrollbar. */
 .figure .vega-embed svg { max-width: 100%; height: auto; }

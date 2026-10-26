@@ -84,7 +84,7 @@
             "symbolType": "square",
             "symbolSize": 260,
             "offset": 2,
-            "titleLimit": 260,
+            "titleLimit": 380,
             "labelLimit": 220
           }
         },
@@ -164,7 +164,7 @@
       ],
       "mark": {
         "type": "text",
-        "fontSize": 13,
+        "fontSize": 14,
         "fontWeight": 700,
         "dx": -20
       },
@@ -221,7 +221,7 @@
       "mark": {
         "type": "text",
         "align": "left",
-        "fontSize": 13,
+        "fontSize": 14,
         "fontWeight": 700,
         "color": "#1F5C4A"
       },
@@ -318,7 +318,7 @@
             "type": "text",
             "align": "left",
             "dx": 6,
-            "fontSize": 13,
+            "fontSize": 14,
             "fontWeight": 700,
             "color": "#1F5C4A"
           },
@@ -513,7 +513,7 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "fontSize": 12,
+        "fontSize": 14,
         "color": "#55554F"
       },
       "encoding": {

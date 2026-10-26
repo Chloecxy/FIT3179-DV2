@@ -7,7 +7,6 @@ const CHARTS = [
   ["vis06", "vega/06_symbols_by_sex.vg.json"],
   ["vis14", "vega/14_shops_linked.vg.json"],
   ["vis08", "vega/08_heatmap.vg.json"],
-  ["vis09", "vega/09_stacked_bar.vg.json"],
   ["vis13", "vega/13_income_volunteer_dots.vg.json"],
   ["vis10", "vega/10_connected_dots.vg.json"],
   ["vis11", "vega/11_radar.vg.json"],
