@@ -5,11 +5,11 @@ const CHARTS = [
   ["vis0304", "vega/0304_linked_age.vg.json"],
   ["vis05", "vega/05_choropleth.vg.json"],
   ["vis06", "vega/06_symbols_by_sex.vg.json"],
-  ["vis14", "vega/14_shops_linked.vg.json"],
-  ["vis08", "vega/08_heatmap.vg.json"],
-  ["vis13", "vega/13_income_volunteer_dots.vg.json"],
-  ["vis10", "vega/10_connected_dots.vg.json"],
-  ["vis11", "vega/11_radar.vg.json"],
+  ["vis0708", "vega/0708_shops_linked.vg.json"],
+  ["vis09", "vega/09_heatmap.vg.json"],
+  ["vis10", "vega/10_income_volunteer_dots.vg.json"],
+  ["vis11", "vega/11_connected_dots.vg.json"],
+  ["vis12", "vega/12_radar.vg.json"],
 ];
 
 // Wait for the web fonts so Vega measures text with the real font, then draw the charts.
