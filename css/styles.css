@@ -141,6 +141,8 @@ main strong.screen { color: var(--screen); }
 .figure .vega-bindings input[type="range"] + span { min-width: 2.6em; color: var(--ink); font-variant-numeric: tabular-nums; }
 /* Charts scale down to the column instead of forcing a horizontal scrollbar. */
 .figure .vega-embed svg { max-width: 100%; height: auto; }
+/* Draw halo strokes behind text, so the white outline does not swallow small map labels. */
+#vis06 svg text[stroke] { paint-order: stroke; }
 .figure .vega-embed details, .figure .vega-embed summary { font-family: var(--sans); }
 .closing p { line-height: 1.6; }
 
